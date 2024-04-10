@@ -2,7 +2,7 @@ import React from "react";
 import avatar from "../img/avatar.jpeg";
 import { Link } from "react-scroll";
 import { LOADED } from "../config/api";
-function Navbar({ viewCount, apiCallStatus }) {
+function Navbar({ views, apiCallStatus }) {
     return (
         <div className="NavBar">
             <nav className="nav">
@@ -74,7 +74,7 @@ function Navbar({ viewCount, apiCallStatus }) {
                 <footer className="footer">
                     <p>
                         Views:{" "}
-                        {apiCallStatus === LOADED ? viewCount : apiCallStatus}
+                        {apiCallStatus === LOADED ? views : apiCallStatus}
                     </p>
                 </footer>
             </nav>

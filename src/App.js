@@ -19,7 +19,7 @@ const App = () => {
     const [selectedSkills, setSelectedSkills] = useState(info.allSkills);
     const [commentList, setCommentList] = useState([]);
     const [apiCallStatus, setApiCallStatus] = useState(LOADING);
-    const [viewCount, setViewCount] = useState(0);
+    const [views, setViews] = useState("");
     const navClick = () => {
         setNavToggle(!navToggle);
     };
@@ -50,7 +50,7 @@ const App = () => {
             setApiCallStatus(LOADING);
             const resp = await axios.get(API_URL);
             setCommentList(resp.data.commentList);
-            setViewCount(resp.data.viewCount);
+            setViews(resp.data.views);
             setApiCallStatus(LOADED);
         } catch (e) {
             setApiCallStatus(e.message);
@@ -67,7 +67,7 @@ const App = () => {
                 <HomePage enterClick={enterClick} />
             </div>
             <div className={`sidebar ${navToggle ? "nav-toggle" : ""}`}>
-                <NavBar apiCallStatus={apiCallStatus} viewCount={viewCount} />
+                <NavBar apiCallStatus={apiCallStatus} views={views} />
             </div>
             <div className="nav-btn" onClick={navClick}>
                 <div className="lines-1"></div>

@@ -1,8 +1,21 @@
 import { useState } from "react";
-import { LOADED } from "../config/api";
+import { API_URL, LOADED } from "../config/api";
+import axios from "axios";
 export default function CommentSection({ commentList, apiCallStatus }) {
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");
+
+    const postComment = async () => {
+        try {
+            const resp = await axios.post(API_URL + "comment", {
+                author,
+                content,
+            });
+            alert(resp.data.message);
+        } catch (e) {
+            alert(e.message);
+        }
+    };
 
     return (
         <div className="comment-box">
@@ -28,7 +41,7 @@ export default function CommentSection({ commentList, apiCallStatus }) {
                     />
                 </div>
                 <div className="submit-button">
-                    <button onClick={() => {}} className="btn">
+                    <button onClick={postComment} className="btn">
                         Send
                     </button>
                 </div>
