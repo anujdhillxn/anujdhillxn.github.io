@@ -1,8 +1,10 @@
 import redditscraper from "../img/projects/redditscraper.jpg";
 import visualcursor from "../img/projects/visualcursor.jpg";
 import img3 from "../img/projects/img3.jpg";
+import flipbook from "../img/projects/flipbook.jpg";
 import igbotImg from "../img/projects/igbot.jpg";
 import boilerplate from "../img/projects/boilerplate.png";
+import agnocpeed from "../img/projects/agnocpeed.jpg";
 import {
     IconCodechef,
     IconCodeforces,
@@ -27,7 +29,7 @@ const projects = [
                 icon: IconCodeforces,
             },
         ],
-        image: igbotImg,
+        image: agnocpeed,
         title: "Agnocpeed",
         description: "Desktop app for competitive programming support.",
     },
@@ -85,7 +87,7 @@ const projects = [
                 icon: IconGithub,
             },
         ],
-        image: img3,
+        image: flipbook,
         title: "Flipbook language",
         description: "A language for generating flipbooks using pictures",
     },
@@ -210,7 +212,7 @@ const links = [
         icon: IconCodechef,
     },
     {
-        url: "https://www.codechef.com/users/anujdhillxn",
+        url: "https://leetcode.com/anujdhillxn/",
         icon: IconLeetcode,
     },
 ];
@@ -229,7 +231,7 @@ export const info = {
             programming and play guitar.
         </p>
     ),
-    cvLink: "https://drive.google.com/file/d/1bhL4r2I00iRskjFc80M3f9W9NVf6x0Rm/view?usp=sharing",
+    cvLink: "https://drive.google.com/file/d/1kvwuDB1__wZ1V_vo_uwK-VO7rdKbaksR/view?usp=sharing",
     email: "anuj.dhillon.14@gmail.com",
     phoneNumber: "+918569919298",
     links,
