@@ -11,12 +11,12 @@ const ContactPage = ({ apiCallStatus, commentList }) => {
                 <Title title={"Contact"} span={"Contact"} />
             </div>
             <div className="ContactPage">
-                <ContactItem
+                {/* <ContactItem
                     icon={IconPhone}
                     text={info.phoneNumber}
                     text2={""}
                     title={"Phone"}
-                />
+                /> */}
                 <ContactItem
                     icon={IconEmail}
                     text={info.email}
