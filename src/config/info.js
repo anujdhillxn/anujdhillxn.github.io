@@ -5,6 +5,7 @@ import flipbook from "../img/projects/flipbook.jpg";
 import igbotImg from "../img/projects/igbot.jpg";
 import boilerplate from "../img/projects/boilerplate.png";
 import agnocpeed from "../img/projects/agnocpeed.jpg";
+import lucive from "../img/projects/lucive.png";
 import {
     IconCodechef,
     IconCodeforces,
@@ -16,6 +17,23 @@ import {
 } from "../img/icons";
 
 const projects = [
+    {
+        id: 8,
+        skills: "Typescript,React Native, Python, Java, Django, PostgreSQL",
+        links: [
+            {
+                url: "https://github.com/anujdhillxn/lucive",
+                icon: IconGithub,
+            },
+            {
+                url: "https://anujdhillxn.github.io/lucive/",
+                icon: IconLink,
+            },
+        ],
+        image: lucive,
+        title: "Lucive",
+        description: "Android app for digital detox and screentime management",
+    },
     {
         id: 6,
         skills: "Javascript,ReactJS,NodeJS,ElectronJS,Web Scraping",
@@ -231,7 +249,7 @@ export const info = {
             programming and play guitar.
         </p>
     ),
-    cvLink: "https://drive.google.com/file/d/1kvwuDB1__wZ1V_vo_uwK-VO7rdKbaksR/view?usp=sharing",
+    cvLink: "https://drive.google.com/file/d/1w2E-dRdiixj7ovxEgP6CI_xsAJPE7TGe/view?usp=sharing",
     email: "anuj.dhillon.14@gmail.com",
     phoneNumber: "+918569919298",
     links,
