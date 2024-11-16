@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "./static/css/main.ffa8e20b.css",
-    "main.js": "./static/js/main.e7dffdae.js",
-    "static/media/boilerplate.png": "./static/media/boilerplate.435c4feede317d32378c.png",
-    "static/media/visualcursor.jpg": "./static/media/visualcursor.0e0c889c8f834049464a.jpg",
-    "static/media/about.jfif": "./static/media/about.7f2f7f405915fb694078.jfif",
-    "static/media/img3.jpg": "./static/media/img3.d7f9afc67fddd7116ab7.jpg",
-    "static/media/igbot.jpg": "./static/media/igbot.9198e1fc638f34bdccb0.jpg",
-    "static/media/flipbook.jpg": "./static/media/flipbook.88ef32fff37210065495.jpg",
-    "static/media/agnocpeed.jpg": "./static/media/agnocpeed.7a2f871a41cb44a91aa6.jpg",
-    "static/media/redditscraper.jpg": "./static/media/redditscraper.b62b2f65a112976e3a05.jpg",
-    "static/media/avatar.jpeg": "./static/media/avatar.8f117830bee61af0c9d0.jpeg",
-    "static/media/lucive.png": "./static/media/lucive.1a742070bb2792e1e1b1.png",
-    "index.html": "./index.html",
-    "main.ffa8e20b.css.map": "./static/css/main.ffa8e20b.css.map",
-    "main.e7dffdae.js.map": "./static/js/main.e7dffdae.js.map"
+    "main.css": "/static/css/main.ffa8e20b.css",
+    "main.js": "/static/js/main.de9eb5bb.js",
+    "static/media/boilerplate.png": "/static/media/boilerplate.435c4feede317d32378c.png",
+    "static/media/visualcursor.jpg": "/static/media/visualcursor.0e0c889c8f834049464a.jpg",
+    "static/media/about.jfif": "/static/media/about.7f2f7f405915fb694078.jfif",
+    "static/media/img3.jpg": "/static/media/img3.d7f9afc67fddd7116ab7.jpg",
+    "static/media/igbot.jpg": "/static/media/igbot.9198e1fc638f34bdccb0.jpg",
+    "static/media/flipbook.jpg": "/static/media/flipbook.88ef32fff37210065495.jpg",
+    "static/media/agnocpeed.jpg": "/static/media/agnocpeed.7a2f871a41cb44a91aa6.jpg",
+    "static/media/redditscraper.jpg": "/static/media/redditscraper.b62b2f65a112976e3a05.jpg",
+    "static/media/avatar.jpeg": "/static/media/avatar.8f117830bee61af0c9d0.jpeg",
+    "static/media/lucive.png": "/static/media/lucive.1a742070bb2792e1e1b1.png",
+    "index.html": "/index.html",
+    "main.ffa8e20b.css.map": "/static/css/main.ffa8e20b.css.map",
+    "main.de9eb5bb.js.map": "/static/js/main.de9eb5bb.js.map"
   },
   "entrypoints": [
     "static/css/main.ffa8e20b.css",
-    "static/js/main.e7dffdae.js"
+    "static/js/main.de9eb5bb.js"
   ]
 }
