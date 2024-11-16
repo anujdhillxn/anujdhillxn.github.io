@@ -12,7 +12,7 @@ import SkillsPage from "./Pages/SkillsPage";
 import ExperiencePage from "./Pages/ExperiecePage";
 import { API_URL, LOADED, LOADING } from "./config/api.js";
 import axios from "axios";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 const App = () => {
     const [navToggle, setNavToggle] = useState(false);
     const [homeToggle, setHomeToggle] = useState(false);
@@ -62,45 +62,79 @@ const App = () => {
     }, []);
 
     return (
-        <div className="App">
-            <div className={`firstpage ${homeToggle ? "home-toggle" : ""}`}>
-                <HomePage enterClick={enterClick} />
-            </div>
-            <div className={`sidebar ${navToggle ? "nav-toggle" : ""}`}>
-                <NavBar apiCallStatus={apiCallStatus} views={views} />
-            </div>
-            <div className="nav-btn" onClick={navClick}>
-                <div className="lines-1"></div>
-                <div className="lines-2"></div>
-                <div className="lines-3"></div>
-            </div>
-            <div className="main-content">
-                <div className="content">
-                    <div id="about">
-                        <AboutPage />
-                    </div>
-                    <div id="skills">
-                        <SkillsPage
-                            selectedSkills={selectedSkills}
-                            clickSkill={clickSkill}
-                        />
-                    </div>
-                    <div id="experience">
-                        <ExperiencePage selectedSkills={selectedSkills} />
-                    </div>
-                    <div id="projects">
-                        <ProjectsPage selectedSkills={selectedSkills} />
-                    </div>
-                    <div id="contact">
-                        <ContactPage
-                            apiCallStatus={apiCallStatus}
-                            commentList={commentList}
-                        />
-                    </div>
-                </div>
-            </div>
-            <Particles id="tsparticles" options={particleOptions} />
-        </div>
+        <Router>
+            <Routes>
+                <Route
+                    path="/lucive"
+                    element={() => {
+                        window.location.href = `${process.env.PUBLIC_URL}/lucive.html`;
+                        return null;
+                    }}
+                />
+                <Route
+                    path="/"
+                    element={
+                        <div className="App">
+                            <div
+                                className={`firstpage ${
+                                    homeToggle ? "home-toggle" : ""
+                                }`}
+                            >
+                                <HomePage enterClick={enterClick} />
+                            </div>
+                            <div
+                                className={`sidebar ${
+                                    navToggle ? "nav-toggle" : ""
+                                }`}
+                            >
+                                <NavBar
+                                    apiCallStatus={apiCallStatus}
+                                    views={views}
+                                />
+                            </div>
+                            <div className="nav-btn" onClick={navClick}>
+                                <div className="lines-1"></div>
+                                <div className="lines-2"></div>
+                                <div className="lines-3"></div>
+                            </div>
+                            <div className="main-content">
+                                <div className="content">
+                                    <div id="about">
+                                        <AboutPage />
+                                    </div>
+                                    <div id="skills">
+                                        <SkillsPage
+                                            selectedSkills={selectedSkills}
+                                            clickSkill={clickSkill}
+                                        />
+                                    </div>
+                                    <div id="experience">
+                                        <ExperiencePage
+                                            selectedSkills={selectedSkills}
+                                        />
+                                    </div>
+                                    <div id="projects">
+                                        <ProjectsPage
+                                            selectedSkills={selectedSkills}
+                                        />
+                                    </div>
+                                    <div id="contact">
+                                        <ContactPage
+                                            apiCallStatus={apiCallStatus}
+                                            commentList={commentList}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <Particles
+                                id="tsparticles"
+                                options={particleOptions}
+                            />
+                        </div>
+                    }
+                />
+            </Routes>
+        </Router>
     );
 };
 

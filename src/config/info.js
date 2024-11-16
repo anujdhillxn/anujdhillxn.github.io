@@ -26,7 +26,7 @@ const projects = [
                 icon: IconGithub,
             },
             {
-                url: "https://anujdhillxn.github.io/lucive/",
+                url: `${process.env.PUBLIC_URL}/lucive.html`,
                 icon: IconLink,
             },
         ],

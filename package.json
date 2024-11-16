@@ -2,7 +2,7 @@
     "name": "anujdhillxn.github.io",
     "version": "0.1.0",
     "private": true,
-    "homepage": ".",
+    "homepage": "https://anujdhillxn.in",
     "dependencies": {
         "axios": "^1.6.8",
         "node-sass": "^7.0.3",
