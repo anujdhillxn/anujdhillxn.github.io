@@ -5,9 +5,6 @@ const Bio = () => {
     const About = info.about;
     return (
         <div className="ImageSection">
-            <div className="img">
-                <img src={about} alt="" />
-            </div>
             <div className="about-info">
                 <h4>
                     Hey there, I am<span> Anuj</span>
