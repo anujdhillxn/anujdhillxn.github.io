@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { typeText } from "$lib/animation";
 
     const { enter } = $props();
@@ -9,7 +9,9 @@
     };
 
     $effect(() => {
-        typeText(document.getElementById("typewriter"), showButton);
+        const el = document.getElementById("typewriter");
+        if (!el) return;
+        typeText(el, showButton);
     });
 </script>
 

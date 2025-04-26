@@ -1,4 +1,8 @@
-export function typeText(el, onComplete, typeInterval = 40) {
+export function typeText(
+    el: HTMLElement,
+    onComplete: CallableFunction,
+    typeInterval = 40
+) {
     if (el.style.opacity === "1") {
         return; // Already typed
     }
@@ -6,8 +10,12 @@ export function typeText(el, onComplete, typeInterval = 40) {
     el.innerHTML = "";
     el.style.opacity = "1";
 
-    function typeTextNode(textNode, parent, callback) {
-        const originalText = textNode.textContent;
+    function typeTextNode(
+        textNode: Node,
+        parent: Node,
+        callback: CallableFunction
+    ) {
+        const originalText = textNode.textContent || "";
         const newTextNode = document.createTextNode("");
         parent.appendChild(newTextNode);
 
@@ -21,7 +29,7 @@ export function typeText(el, onComplete, typeInterval = 40) {
         }, typeInterval);
     }
 
-    function typeNode(node, parent, done) {
+    function typeNode(node: Node, parent: Node, done: CallableFunction) {
         if (node.nodeType === Node.TEXT_NODE) {
             typeTextNode(node, parent, done);
         } else if (node.nodeType === Node.ELEMENT_NODE) {

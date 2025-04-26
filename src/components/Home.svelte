@@ -1,12 +1,12 @@
-<script>
-    import { API_URL, LOADED, LOADING } from "$lib/api";
+<script lang="ts">
+    import { API_URL, LOADED, LOADING, type Comment } from "$lib/api";
     import Content from "./Content.svelte";
     import Navbar from "./Navbar.svelte";
     import NavButton from "./NavButton.svelte";
 
     let hideNavbarInSmallerScreens = $state(true);
     let apiCallStatus = $state(LOADING);
-    let commentList = $state([]);
+    let commentList: Comment[] = $state([]);
     let views = $state("");
     const toggleNavbar = () => {
         hideNavbarInSmallerScreens = !hideNavbarInSmallerScreens;

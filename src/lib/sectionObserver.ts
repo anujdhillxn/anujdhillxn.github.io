@@ -1,4 +1,8 @@
-export const createSectionObserver = (sections, onObserve, threshold = 0.5) => {
+export const createSectionObserver = (
+    sections: Element[],
+    onObserve: (element: Element) => void,
+    threshold = 0.5
+) => {
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {

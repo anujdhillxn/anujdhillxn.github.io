@@ -16,7 +16,31 @@ import {
     IconLinkedin,
 } from "./icons";
 
-const projects = [
+export type ProjectLink = {
+    url: string;
+    icon: string;
+};
+
+export type Project = {
+    id: number;
+    skills: string;
+    links: ProjectLink[];
+    image: string;
+    title: string;
+    description: string;
+};
+
+export type Experience = {
+    employer: string;
+    role: string;
+    skills: string;
+    type: string;
+    startMonth: string;
+    endMonth: string;
+    description: string;
+};
+
+const projects: Project[] = [
     {
         id: 8,
         skills: "Typescript,React Native, Python, Java, Django, PostgreSQL",
@@ -137,7 +161,7 @@ const projects = [
     // },
 ];
 
-const experiences = [
+const experiences: Experience[] = [
     {
         employer: "Australia And New Zealand Banking Group Limited",
         role: "Fullstack Developer",

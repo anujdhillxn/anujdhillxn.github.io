@@ -1,9 +1,8 @@
-<script>
-    import { info } from "$lib/info";
+<script lang="ts">
+    import { info, type Experience } from "$lib/info";
     import Title from "./Title.svelte";
     import CustomRenderer from "./CustomRenderer.svelte";
     import { createSectionObserver } from "$lib/sectionObserver";
-    import { typeText } from "$lib/animation";
     const { selectedSkills } = $props();
 
     $effect(() => {
@@ -27,7 +26,7 @@
     });
 </script>
 
-{#snippet experience(item)}
+{#snippet experience(item: Experience)}
     <div>
         <div class="heading-container">
             <h5 class="heading-text">{`${item.employer} `}</h5>

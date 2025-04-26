@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { LOADED } from "$lib/api";
     import { createSectionObserver } from "$lib/sectionObserver";
     import avatar from "../img/avatar.jpeg";
@@ -6,11 +6,11 @@
 
     let activeNavItem = $state("");
 
-    const onObserve = (element) => {
+    const onObserve = (element: Element) => {
         activeNavItem = element.id;
     };
 
-    const scrollToSection = (id) => {
+    const scrollToSection = (id: string) => {
         const section = document.getElementById(id);
         if (section) {
             section.scrollIntoView({ behavior: "smooth" });
@@ -19,9 +19,9 @@
 
     $effect(() => {
         const observer = createSectionObserver(
-            ["about", "skills", "experience", "projects", "contact"].map((id) =>
-                document.getElementById(id)
-            ),
+            ["about", "skills", "experience", "projects", "contact"]
+                .map((id) => document.getElementById(id))
+                .filter((element) => element !== null),
             onObserve
         );
         return () => {
@@ -30,9 +30,20 @@
     });
 </script>
 
-{#snippet navItem(id, text)}
+{#snippet navItem(id: string, text: string, tabIndex: number)}
     <li class={"nav-item" + (id === activeNavItem ? " active" : "")}>
-        <div onclick={() => scrollToSection(id)} class="nav-link">
+        <div
+            onclick={() => scrollToSection(id)}
+            class="nav-link"
+            role="button"
+            tabindex={tabIndex}
+            onkeydown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    scrollToSection(id);
+                }
+            }}
+        >
             {text}
         </div>
     </li>
@@ -49,11 +60,11 @@
                 <img src={avatar} alt="Anuj" />
             </div>
             <ul class="nav-items">
-                {@render navItem("about", "About")}
-                {@render navItem("skills", "Skills")}
-                {@render navItem("experience", "Experience")}
-                {@render navItem("projects", "Projects")}
-                {@render navItem("contact", "Contact")}
+                {@render navItem("about", "About", 0)}
+                {@render navItem("skills", "Skills", 1)}
+                {@render navItem("experience", "Experience", 2)}
+                {@render navItem("projects", "Projects", 3)}
+                {@render navItem("contact", "Contact", 4)}
             </ul>
             <footer class="footer">
                 <p>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { info } from "$lib/info";
     import AboutSection from "./AboutSection.svelte";
     import ContactSection from "./ContactSection.svelte";
@@ -9,7 +9,7 @@
     const { commentList, apiCallStatus } = $props();
 
     let selectedSkills = $state(info.allSkills);
-    const clickSkill = (skill) => {
+    const clickSkill = (skill: string) => {
         if (skill === "All") {
             selectedSkills = info.allSkills;
             return;

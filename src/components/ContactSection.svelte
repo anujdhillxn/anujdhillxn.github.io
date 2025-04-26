@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Title from "./Title.svelte";
     import { info } from "$lib/info";
     import CustomRenderer from "./CustomRenderer.svelte";
@@ -13,18 +13,27 @@
         const observer = createSectionObserver(
             [...document.getElementsByClassName("ContactItem")],
             () => {
+                const rightItemsContainer =
+                    document.getElementById("right-items");
+                const iconHolder = document.getElementById("icon-holder");
+                const iconsContainer = document.getElementById("icons");
+                if (!rightItemsContainer || !iconHolder || !iconsContainer) {
+                    throw new Error("Check element IDs");
+                }
                 typeText(
-                    document.getElementById("right-items"),
+                    rightItemsContainer,
                     () => {
-                        document
-                            .getElementById("icon-holder")
-                            .classList.add("show");
+                        iconHolder.classList.add("show");
                     },
                     20
                 );
-                document.getElementById("icons").classList.add("show");
+                iconsContainer.classList.add("show");
             }
         );
+
+        return () => {
+            observer.disconnect();
+        };
     });
 </script>
 

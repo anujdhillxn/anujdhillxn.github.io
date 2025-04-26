@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { info } from "$lib/info";
     import { createSectionObserver } from "$lib/sectionObserver";
     const { selectedSkills, clickSkill } = $props();
@@ -19,7 +19,11 @@
         };
     });
 
-    const shouldHighlight = (text, categories, selectedCategories) => {
+    const shouldHighlight = (
+        text: string,
+        categories: string[],
+        selectedCategories: string[]
+    ) => {
         if (categories.length === selectedCategories.length) {
             return text === "All";
         } else {

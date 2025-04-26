@@ -1,5 +1,5 @@
-<script>
-    import { info } from "$lib/info";
+<script lang="ts">
+    import { info, type Project } from "$lib/info";
     import Title from "./Title.svelte";
     import CustomRenderer from "./CustomRenderer.svelte";
     import { createSectionObserver } from "$lib/sectionObserver";
@@ -20,7 +20,7 @@
     });
 </script>
 
-{#snippet project(item)}
+{#snippet project(item: Project)}
     <div class="project">
         <div class="image-data">
             <img src={item.image} alt={item.title} />

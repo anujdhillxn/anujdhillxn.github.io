@@ -36,9 +36,6 @@
                 h4 {
                     font-size: 2rem;
                 }
-                .about-text {
-                    padding: 1rem 0;
-                }
             }
         }
     }

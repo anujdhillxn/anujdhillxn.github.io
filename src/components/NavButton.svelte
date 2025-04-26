@@ -2,10 +2,21 @@
     const { toggleNavbar } = $props();
 </script>
 
-<div class="nav-btn" onclick={toggleNavbar}>
-    <div class="lines-1"></div>
-    <div class="lines-2"></div>
-    <div class="lines-3"></div>
+<div
+    class="nav-btn"
+    onclick={toggleNavbar}
+    onkeydown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggleNavbar();
+        }
+    }}
+    role="button"
+    tabindex="0"
+>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
 </div>
 
 <style>
@@ -22,16 +33,12 @@
         cursor: pointer;
         @media screen and (max-width: 1000px) {
             display: block;
-            .lines-1,
-            .lines-2,
-            .lines-3 {
+            .line {
                 display: block;
             }
         }
     }
-    .lines-1,
-    .lines-2,
-    .lines-3 {
+    .line {
         height: 0.4rem;
         width: 100%;
         background-color: var(--primary2);
