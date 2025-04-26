@@ -1,0 +1,121 @@
+<script>
+    import Title from "./Title.svelte";
+    import { info } from "$lib/info";
+    import CustomRenderer from "./CustomRenderer.svelte";
+    import { IconEmail } from "$lib/icons";
+    import CommentSection from "./CommentSection.svelte";
+    import { typeText } from "$lib/animation";
+    import { createSectionObserver } from "$lib/sectionObserver";
+
+    const { apiCallStatus, commentList } = $props();
+
+    $effect(() => {
+        const observer = createSectionObserver(
+            [...document.getElementsByClassName("ContactItem")],
+            () => {
+                typeText(
+                    document.getElementById("right-items"),
+                    () => {
+                        document
+                            .getElementById("icon-holder")
+                            .classList.add("show");
+                    },
+                    20
+                );
+                document.getElementById("icons").classList.add("show");
+            }
+        );
+    });
+</script>
+
+<div id="contact">
+    <div class="title">
+        <Title title="Contact" span="Contact" />
+    </div>
+    <div class="ContactPage">
+        <div class="ContactItem">
+            <div id="icon-holder" class="contact-icon-holder">
+                <CustomRenderer htmlString={IconEmail} />
+            </div>
+            <div id="right-items" class="right-items">
+                <p>Email</p>
+                <p class="label">{info.email}</p>
+            </div>
+        </div>
+        <div id="icons" class="icons">
+            {#each info.links as link}
+                <a
+                    href={link.url}
+                    target="_blank"
+                    class="icon-holder"
+                    rel="noreferrer"
+                >
+                    <CustomRenderer htmlString={link.icon} />
+                </a>
+            {/each}
+        </div>
+    </div>
+    <div class="separator-text">
+        <h2>Or Write Anonymously</h2>
+    </div>
+    <CommentSection {apiCallStatus} {commentList} />
+</div>
+
+<style>
+    .ContactItem {
+        width: 100%;
+        display: flex;
+        background-color: var(--background2);
+        align-items: center;
+        justify-content: space-around;
+        .right-items {
+            .label {
+                font-size: 1rem;
+                color: var(--text2);
+            }
+        }
+    }
+
+    .ContactPage {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        margin-bottom: 2rem;
+        @media screen and (max-width: 1270px) {
+            display: block;
+        }
+    }
+    .contact-icon-holder {
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+    }
+    :global(.contact-icon-holder.show) {
+        opacity: 1;
+    }
+    .separator-text {
+        margin-bottom: 1rem;
+    }
+    .icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 1.5rem 0;
+        margin: 0 2rem;
+        transform: scale(0);
+        transform-origin: top;
+        transition: all 0.5s ease-in-out;
+        .icon-holder {
+            margin: 0.5rem;
+        }
+    }
+    :global(.icon) {
+        transition: all 0.5s ease-in-out;
+    }
+    :global(.icon:hover) {
+        transform: scale(1.1);
+    }
+    :global(.icons.show) {
+        transform: scale(1);
+    }
+</style>

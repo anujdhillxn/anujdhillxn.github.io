@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&display=swap");
+			@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;1,400&family=Sora:wght@200;300;500&display=swap");
+
+            :root {
+                --text1: #ffffff; /* Text over Primary1 and Primary2 */
+                --text2: #e0e0e0; /* Text over Background2 */
+                --text3: #c0c0c0; /* Text over Background2 */
+                --background1: #1e1e1e; /* Main background */
+                --background2: #2e2e2e; /* Used for cards */
+                --primary1: #9370db; /* Secondary primary color */
+                --primary2: #8a2be2; /* Primary color */
+                --accent1: #ba55d3; /* Accent color */
+                --accent2: #dda0dd; /* Secondary accent color */
+                --danger: #ff7f7f; /* Danger color */
+            }
+			body {
+				margin: 0;
+				font-family: "JetBrains Mono", monospace;
+				font-family: "Sora", sans-serif;
+				font-size: 1.1rem;
+				color: var(--text1);
+				background-color: var(--background1);
+				overflow: hidden;
+				span {
+					color: var(--primary2);
+				}
+			}
+			*::-webkit-scrollbar {
+			width: 4px;
+			}
+			*::-webkit-scrollbar-thumb {
+			background-color: var(--primary2);
+			}
+			*::-webkit-scrollbar-track {
+			 background-color: var(--text2)
+			}
+		</style>
+	</head>
+	<body>
+		%sveltekit.body%
+	</body>
+</html>
