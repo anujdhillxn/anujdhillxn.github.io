@@ -1,30 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucive - Android App</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="./icononly_transparent_nobuffer.png" type="image/png">
-</head>
-<body>
-    <div class="content">
-        <img src="./fulllogo_transparent.png" alt="Lucive Picture" class="app-picture">
-        <div class="container">
-            <p>Lucive helps users control their screen time by forming duos for accountability.</p>
-            <p>Set rules like hourly, daily, session limits, and startup delay. Rule changes require partner approval.</p>
-            <a href="https://play.google.com/store/apps/details?id=com.lucive" class="download-button">Download Now</a>
-        </div>
-        <div class="privacy-policy">
-            <a href="https://github.com/anujdhillxn/lucive/blob/master/privacy-policy.md" target="_blank">Privacy Policy</a>
-        </div>
-        <div class="data-deletion">
-            <p>To delete your data, email <a href="mailto:anuj.dhillon.14@gmail.com?subject=Lucive%20Data%20Deletion">anuj.dhillon.14@gmail.com</a> with the subject "Lucive Data Deletion" from your registered email.</p>
-        </div>
-        <div class="created-by">
-            Created by <a href="https://anujdhillxn.in" target="_blank">anujdhillxn</a>
-        </div>
-    </div>
-</body>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<link href="./_app/immutable/assets/3.DxhMbMuI.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.elC1WRlH.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/CPN0hkio.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/Cw1ShV1F.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/DXsXCqEi.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.DdAvCEcg.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/MFSbsGgm.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/DZdajc9K.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/DRg52LM0.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.B2DT6mFe.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/3.B18J10rw.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BADzKIHC.js">
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&display=swap");
+			@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;1,400&family=Sora:wght@200;300;500&display=swap");
+
+            :root {
+                --text1: #ffffff; /* Text over Primary1 and Primary2 */
+                --text2: #e0e0e0; /* Text over Background2 */
+                --text3: #c0c0c0; /* Text over Background2 */
+                --background1: #1e1e1e; /* Main background */
+                --background2: #2e2e2e; /* Used for cards */
+                --primary1: #9370db; /* Secondary primary color */
+                --primary2: #8a2be2; /* Primary color */
+                --accent1: #ba55d3; /* Accent color */
+                --accent2: #dda0dd; /* Secondary accent color */
+                --danger: #ff7f7f; /* Danger color */
+            }
+			body {
+				margin: 0;
+				font-family: "JetBrains Mono", monospace;
+				font-family: "Sora", sans-serif;
+				font-size: 1.1rem;
+				color: var(--text1);
+				background-color: var(--background1);
+				overflow: hidden;
+				span {
+					color: var(--primary2);
+				}
+			}
+			*::-webkit-scrollbar {
+			width: 4px;
+			}
+			*::-webkit-scrollbar-thumb {
+			background-color: var(--primary2);
+			}
+			*::-webkit-scrollbar-track {
+			 background-color: var(--text2)
+			}
+		</style>
+	</head>
+	<body>
+		<!--[--><!--[--><!----><!----><div class="outer svelte-1uppcoq"><div class="content svelte-1uppcoq"><div class="created-by svelte-1uppcoq">Created by <a href="https://anujdhillxn.in" target="_blank" class="svelte-1uppcoq">anujdhillxn</a></div> <img src="/fulllogo_transparent.png" alt="Lucive Logo" class="app-picture svelte-1uppcoq"> <div class="container svelte-1uppcoq"><p class="svelte-1uppcoq">Lucive helps users control their screen time by forming duos for
+                accountability.</p> <p class="svelte-1uppcoq">Set rules like hourly, daily, session limits, and startup delay.
+                Rule changes require partner approval.</p> <a href="https://play.google.com/store/apps/details?id=com.lucive" class="download-button svelte-1uppcoq">Download Now</a></div> <div class="privacy-policy svelte-1uppcoq"><a href="https://github.com/anujdhillxn/lucive/blob/master/privacy-policy.md" target="_blank" class="svelte-1uppcoq">Privacy Policy</a></div> <div class="data-deletion svelte-1uppcoq"><p class="svelte-1uppcoq">To delete your data, email <a href="mailto:anuj.dhillon.14@gmail.com?subject=Lucive%20Data%20Deletion" class="svelte-1uppcoq">anuj.dhillon.14@gmail.com</a> with the subject "Lucive Data Deletion" from your registered email.</p></div></div></div><!----><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_a8vb90 = {
+						base: new URL(".", location).pathname.slice(0, -1)
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./_app/immutable/entry/start.elC1WRlH.js"),
+						import("./_app/immutable/entry/app.DdAvCEcg.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		
+	</body>
 </html>
