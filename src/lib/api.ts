@@ -1,4 +1,4 @@
-const DEBUG = true;
+const DEBUG = false;
 const API_URL = DEBUG
     ? "http://localhost:5000/"
     : "https://api-anujdhillxn.onrender.com/";
