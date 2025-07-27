@@ -12,10 +12,14 @@
 <style>
     .title {
         text-transform: uppercase;
-        font-size: 2rem;
+        font-size: 2.5rem;
         color: var(--text1);
         position: relative;
         letter-spacing: 2px;
+        h3 {
+            margin: 0;
+            margin-bottom: 2rem;
+        }
         &::after {
             content: "";
             bottom: 0;
@@ -40,7 +44,7 @@
             position: absolute;
             top: 20%;
             left: 0;
-            font-size: 3rem;
+            font-size: 3.5rem;
             opacity: 0.07;
         }
     }

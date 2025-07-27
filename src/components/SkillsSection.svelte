@@ -33,9 +33,7 @@
 </script>
 
 <div id="skills" class="SkillsPage">
-    <div class="title">
-        <Title title={"Skills"} span={"Skills"} />
-    </div>
+    <h4>I am skilled in</h4>
     <div class="buttons">
         {#each allSkills as cat, i}
             <button
@@ -49,9 +47,16 @@
             </button>
         {/each}
     </div>
+    <button class="btn">
+        <a href={info.cvLink}>Download CV</a>
+    </button>
 </div>
 
 <style>
+    h4 {
+        font-size: 2rem;
+        margin: 0 0 1rem 0;
+    }
     .btn-port {
         transform: scale(0);
         transform-origin: top;
@@ -63,7 +68,7 @@
         font-size: inherit;
         font-family: inherit;
         color: var(--text1);
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         transition: all 0.5s ease-in-out;
         &:not(:last-child) {
             margin-right: 1rem;
@@ -83,8 +88,41 @@
 
     .buttons {
         display: flex;
-        justify-content: center;
-        align-items: center;
         flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    .btn {
+        padding: 1rem 2rem;
+        background-color: var(--primary2);
+        outline: none;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        color: var(--text1);
+        text-transform: uppercase;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.8s ease-in-out;
+        &::after {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0.3rem;
+            left: 0;
+            bottom: 0;
+            background-color: var(--primary2);
+            transition: all 0.4s ease-in-out;
+        }
+        &:hover::after {
+            width: 100%;
+        }
+        a {
+            text-decoration: none;
+            color: var(--text1);
+        }
+    }
+    .btn:hover {
+        background-color: var(--background2);
+        color: var(--text2);
     }
 </style>

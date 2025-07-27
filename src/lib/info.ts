@@ -22,7 +22,7 @@ export type ProjectLink = {
 };
 
 export type Project = {
-    id: number;
+    id: string;
     skills: string;
     links: ProjectLink[];
     image: string;
@@ -31,6 +31,7 @@ export type Project = {
 };
 
 export type Experience = {
+    id: string;
     employer: string;
     role: string;
     skills: string;
@@ -42,7 +43,7 @@ export type Experience = {
 
 const projects: Project[] = [
     {
-        id: 8,
+        id: "lucive",
         skills: "Typescript,React Native, Python, Java, Django, PostgreSQL",
         links: [
             {
@@ -59,7 +60,7 @@ const projects: Project[] = [
         description: "Android app for digital detox and screentime management",
     },
     {
-        id: 6,
+        id: "agnocpeed",
         skills: "Javascript,ReactJS,NodeJS,ElectronJS,Web Scraping",
         links: [
             {
@@ -76,7 +77,7 @@ const projects: Project[] = [
         description: "Desktop app for competitive programming support.",
     },
     {
-        id: 4,
+        id: "igbot",
         skills: "Javascript,Typescript,NodeJS,ExpressJS,Web Scraping,MongoDB",
         links: [
             {
@@ -90,7 +91,7 @@ const projects: Project[] = [
             "Automated bot for instagram using puppeteer and expressjs for posting, scraping and gathering followers",
     },
     {
-        id: 5,
+        id: "cpb",
         skills: "C++,DSA",
         links: [
             {
@@ -104,7 +105,7 @@ const projects: Project[] = [
             "Implementations of various standard Data structures and algorithms",
     },
     {
-        id: 3,
+        id: "fd",
         skills: "Python,Flask,DSA",
         links: [
             {
@@ -121,7 +122,7 @@ const projects: Project[] = [
         description: "Flask app to find derivative of a function",
     },
     {
-        id: 7,
+        id: "fb",
         skills: "Python",
         links: [
             {
@@ -163,6 +164,7 @@ const projects: Project[] = [
 
 const experiences: Experience[] = [
     {
+        id: "anz",
         employer: "Australia And New Zealand Banking Group Limited",
         role: "Fullstack Developer",
         skills: "Java,Spring,Git,ReactJS,Javascript,Typescript,C++,MS SQL Server",
@@ -186,6 +188,7 @@ const experiences: Experience[] = [
         `,
     },
     {
+        id: "mm",
         employer: "Math Materate",
         role: "Fullstack Developer",
         skills: "ReactJS,Javascript,PostgreSQL,Git,Django",

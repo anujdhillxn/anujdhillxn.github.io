@@ -19,7 +19,7 @@
 
     $effect(() => {
         const observer = createSectionObserver(
-            ["about", "skills", "experience", "projects", "contact"]
+            ["about", "experience", "projects", "contact"]
                 .map((id) => document.getElementById(id))
                 .filter((element) => element !== null),
             onObserve
@@ -61,10 +61,9 @@
             </div>
             <ul class="nav-items">
                 {@render navItem("about", "About", 0)}
-                {@render navItem("skills", "Skills", 1)}
-                {@render navItem("experience", "Experience", 2)}
-                {@render navItem("projects", "Projects", 3)}
-                {@render navItem("contact", "Contact", 4)}
+                {@render navItem("experience", "Experience", 1)}
+                {@render navItem("projects", "Projects", 2)}
+                {@render navItem("contact", "Contact", 3)}
             </ul>
             <footer class="footer">
                 <p>

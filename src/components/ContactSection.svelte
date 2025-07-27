@@ -42,15 +42,6 @@
         <Title title="Contact" span="Contact" />
     </div>
     <div class="ContactPage">
-        <div class="ContactItem">
-            <div id="icon-holder" class="contact-icon-holder">
-                <CustomRenderer htmlString={IconEmail} />
-            </div>
-            <div id="right-items" class="right-items">
-                <p>Email</p>
-                <p class="label">{info.email}</p>
-            </div>
-        </div>
         <div id="icons" class="icons">
             {#each info.links as link}
                 <a
@@ -62,6 +53,15 @@
                     <CustomRenderer htmlString={link.icon} />
                 </a>
             {/each}
+        </div>
+        <div class="ContactItem">
+            <div id="icon-holder" class="contact-icon-holder">
+                <CustomRenderer htmlString={IconEmail} />
+            </div>
+            <div id="right-items" class="right-items">
+                <p>Email</p>
+                <p class="label">{info.email}</p>
+            </div>
         </div>
     </div>
     <div class="separator-text">
@@ -88,8 +88,8 @@
     .ContactPage {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        align-items: center;
         margin-bottom: 2rem;
+        gap: 2rem;
         @media screen and (max-width: 1270px) {
             display: block;
         }
@@ -106,17 +106,11 @@
     }
     .icons {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        gap: 1rem;
         flex-wrap: wrap;
-        padding: 1.5rem 0;
-        margin: 0 2rem;
         transform: scale(0);
         transform-origin: top;
         transition: all 0.5s ease-in-out;
-        .icon-holder {
-            margin: 0.5rem;
-        }
     }
     :global(.icon) {
         transition: all 0.5s ease-in-out;

@@ -6,11 +6,13 @@
 
     const { selectedSkills } = $props();
 
+    const hasAppearedOnce: string[] = $state([]);
+
     $effect(() => {
         const observer = createSectionObserver(
             Array.from(document.getElementsByClassName("project")),
             (element) => {
-                element.classList.add("show");
+                hasAppearedOnce.push(element.id);
             },
             0.2
         );
@@ -21,7 +23,10 @@
 </script>
 
 {#snippet project(item: Project)}
-    <div class="project">
+    <div
+        class={`project ${hasAppearedOnce.findIndex((proId) => proId === item.id) !== -1 ? `show` : ``}`}
+        id={item.id}
+    >
         <div class="image-data">
             <img src={item.image} alt={item.title} />
             <ul class="hover-items">
@@ -71,7 +76,7 @@
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        row-gap: 2rem;
+        row-gap: 1rem;
         column-gap: 1rem;
         @media screen and (max-width: 900px) {
             grid-template-columns: repeat(1, 1fr);
@@ -103,8 +108,8 @@
                 }
                 img {
                     width: 100%;
-                    height: 30vh;
-                    max-width: 30vh;
+                    height: 35vh;
+                    max-width: 35vh;
                     object-fit: scale-down;
                     @media screen and (max-width: 400px) {
                     }

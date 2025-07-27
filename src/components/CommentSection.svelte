@@ -76,12 +76,12 @@
             <div id="comment-list">
                 {#each commentList as item}
                     <div class="comment">
+                        <div class="comment-body">
+                            <p>{item.content}</p>
+                        </div>
                         <div class="comment-info">
                             <span class="comment-author">{item.author}</span>
                             <p>{item.dateAdded}</p>
-                        </div>
-                        <div class="comment-body">
-                            <p>{item.content}</p>
                         </div>
                     </div>
                 {/each}
@@ -96,7 +96,7 @@
     .comment-box {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        text-align: center;
+        gap: 2rem;
         .write-area {
             .inputtext {
                 text-align: center;
@@ -108,6 +108,8 @@
                     background-color: var(--background2);
                     color: var(--text1);
                     margin-bottom: 0.5rem;
+                    font-family: inherit;
+                    padding: 1rem;
                 }
             }
             .submit-button {
@@ -153,13 +155,13 @@
             }
         }
         .display-area {
-            max-height: 13rem;
+            max-height: 10rem;
             overflow-y: scroll;
             #comment-list {
                 opacity: 0;
             }
             .comment {
-                margin-bottom: 0.7rem;
+                margin-bottom: 1rem;
                 .comment-info {
                     p {
                         font-size: 0.8rem;
@@ -168,6 +170,9 @@
                 }
                 .comment-body {
                     font-size: 1rem;
+                    p {
+                        margin: 1rem 0 0 0;
+                    }
                 }
             }
         }

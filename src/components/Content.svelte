@@ -2,6 +2,7 @@
     import { info } from "$lib/info";
     import AboutSection from "./AboutSection.svelte";
     import ContactSection from "./ContactSection.svelte";
+    import Divider from "./Divider.svelte";
     import ExperienceSection from "./ExperienceSection.svelte";
     import ProjectsSection from "./ProjectsSection.svelte";
     import SkillsSection from "./SkillsSection.svelte";
@@ -29,8 +30,11 @@
 <div class="top-container">
     <AboutSection />
     <SkillsSection {selectedSkills} {clickSkill} />
+    <Divider />
     <ExperienceSection {selectedSkills} />
+    <Divider />
     <ProjectsSection {selectedSkills} />
+    <Divider />
     <ContactSection {commentList} {apiCallStatus} />
 </div>
 
@@ -39,9 +43,5 @@
         padding: 5% 10% 10% 10%;
         overflow-y: scroll;
         overflow-x: hidden;
-
-        &:nth-child(1) {
-            margin-bottom: 20rem;
-        }
     }
 </style>
