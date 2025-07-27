@@ -40,8 +40,14 @@
 
 <style>
     .top-container {
-        padding: 5% 10% 10% 10%;
+        padding: 12vh 10% 12vh 10%;
         overflow-y: scroll;
         overflow-x: hidden;
+        @media screen and (max-width: 600px) {
+            padding: 12vh 1rem 12vh 1rem;
+        }
+        :global(p, li) {
+            color: var(--text3);
+        }
     }
 </style>

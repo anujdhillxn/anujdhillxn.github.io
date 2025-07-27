@@ -112,7 +112,6 @@
                 img {
                     width: 70%;
                     border-radius: 100%;
-                    border: 5px solid var(--accent2);
                     margin-bottom: 1rem;
                 }
             }
@@ -139,7 +138,7 @@
                             left: 0;
                             width: 0.01rem;
                             height: 100%;
-                            background-color: var(--accent1);
+                            background-color: var(--primary1);
                             opacity: 0.5;
                             transform-origin: center;
                             transform: scale(0);
@@ -156,7 +155,7 @@
                     }
                 }
                 .active {
-                    background-color: var(--accent1);
+                    background-color: var(--primary1);
                     color: var(--background2);
                     transition: all 0.4s ease-in-out;
                     &::before {

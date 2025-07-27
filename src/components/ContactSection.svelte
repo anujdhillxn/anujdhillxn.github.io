@@ -111,6 +111,9 @@
         transform: scale(0);
         transform-origin: top;
         transition: all 0.5s ease-in-out;
+        @media screen and (max-width: 1270px) {
+            margin-bottom: 1rem;
+        }
     }
     :global(.icon) {
         transition: all 0.5s ease-in-out;

@@ -2,7 +2,7 @@
 
 <style>
     .container {
-        margin: 1.5rem;
+        margin: 1.5rem -0.5rem;
     }
     .line {
         width: 100%;

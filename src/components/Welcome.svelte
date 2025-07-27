@@ -25,7 +25,7 @@
         </h2>
     </div>
 
-    <button class="btnbig" id="enter-button" onclick={enter}>Enter</button>
+    <button class="btn" id="enter-button" onclick={enter}>Enter</button>
 </div>
 
 <style>
@@ -56,26 +56,38 @@
         height: 100vh;
         background-color: var(--background1);
     }
-    .btnbig {
-        opacity: 0;
-        padding: 1rem 2rem;
+    .btn {
+        padding: 1.5rem 3rem;
         background-color: var(--primary1);
-        width: 25%;
         outline: none;
         border: none;
+        font-family: inherit;
+        font-size: inherit;
         color: var(--text1);
         text-transform: uppercase;
         cursor: pointer;
-        margin-top: 1rem;
         position: relative;
-        transition: all 0.5s ease-in-out;
+        transition: all 0.8s ease-in-out;
+        opacity: 0;
+        &::after {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0.3rem;
+            left: 0;
+            bottom: 0;
+            background-color: var(--primary1);
+            transition: all 0.4s ease-in-out;
+        }
+        &:hover::after {
+            width: 100%;
+        }
     }
-    :global(.btnbig.show) {
+    :global(.btn.show) {
         opacity: 1;
     }
-    .btnbig:hover {
-        animation: shake 0.5s;
-        color: var(--primary1);
-        background-color: var(--text1);
+    .btn:hover {
+        background-color: var(--background2);
+        color: var(--text2);
     }
 </style>

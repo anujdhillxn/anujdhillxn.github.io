@@ -67,11 +67,11 @@
         cursor: pointer;
         font-size: inherit;
         font-family: inherit;
-        color: var(--text1);
-        margin-bottom: 1rem;
+        color: var(--text2);
+        margin-bottom: 0.75rem;
         transition: all 0.5s ease-in-out;
         &:not(:last-child) {
-            margin-right: 1rem;
+            margin-right: 0.75rem;
         }
         &:hover {
             background-color: var(--primary2);
@@ -92,7 +92,7 @@
         margin-bottom: 1rem;
     }
     .btn {
-        padding: 1rem 2rem;
+        padding: 1.5rem 3rem;
         background-color: var(--primary2);
         outline: none;
         border: none;
