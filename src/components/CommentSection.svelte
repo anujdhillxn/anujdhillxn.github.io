@@ -155,7 +155,7 @@
             }
         }
         .display-area {
-            max-height: 10rem;
+            height: 10rem;
             overflow-y: scroll;
             #comment-list {
                 opacity: 0;
