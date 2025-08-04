@@ -109,7 +109,8 @@
                     color: var(--text1);
                     margin-bottom: 0.5rem;
                     font-family: inherit;
-                    padding: 1rem;
+                    padding: 0.5rem;
+                    font-size: 1rem;
                 }
             }
             .submit-button {

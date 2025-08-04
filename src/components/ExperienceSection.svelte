@@ -91,6 +91,7 @@
         h3 {
             margin: 0;
             font-weight: 600;
+            color: var(--text2);
         }
         ul {
             margin: 0;

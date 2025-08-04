@@ -15,7 +15,7 @@
         font-size: 2.2rem;
         color: var(--text1);
         position: relative;
-        letter-spacing: 2px;
+        letter-spacing: 0.1rem;
         h3 {
             margin: 0;
             margin-bottom: 2rem;

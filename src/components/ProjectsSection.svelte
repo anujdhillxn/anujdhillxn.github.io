@@ -44,7 +44,7 @@
                 {/each}
             </ul>
         </div>
-        <h5 class="heading-text">{item.title}</h5>
+        <h3 class="heading-text">{item.title}</h3>
         <p>{item.description}</p>
     </div>
 {/snippet}
@@ -72,7 +72,6 @@
 
 <style>
     .projects {
-        padding-right: 20px;
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -87,16 +86,21 @@
             transform-origin: top;
             transition: all 0.5s ease-in-out;
             text-align: center;
+            h3 {
+                margin: 0;
+                font-weight: 600;
+                color: var(--text2);
+            }
             .image-data {
                 position: relative;
                 text-align: center;
                 &::before {
                     content: "";
                     position: absolute;
-                    top: 12px;
-                    left: 15px;
-                    height: calc(100% - 30px);
-                    width: calc(100% - 30px);
+                    top: 5%;
+                    left: 5%;
+                    height: 90%;
+                    width: 90%;
                     background-color: var(--background2);
                     transform-origin: center;
                     transform: scale(0);
@@ -108,8 +112,8 @@
                 }
                 img {
                     width: 100%;
-                    height: 35vh;
-                    max-width: 35vh;
+                    height: 20rem;
+                    max-width: 20rem;
                     object-fit: scale-down;
                     @media screen and (max-width: 400px) {
                     }
