@@ -40,7 +40,7 @@
 
 <style>
     .top-container {
-        padding: 12vh 10% 12vh 10%;
+        padding: 12vh 20% 12vh 20%;
         overflow-y: scroll;
         overflow-x: hidden;
         @media screen and (max-width: 600px) {

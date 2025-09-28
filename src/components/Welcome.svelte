@@ -54,7 +54,6 @@
         flex-direction: column;
         justify-content: center;
         height: 100vh;
-        background-color: var(--background1);
     }
     .btn {
         padding: 1.5rem 3rem;

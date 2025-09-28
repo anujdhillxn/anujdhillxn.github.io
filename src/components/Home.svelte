@@ -32,9 +32,7 @@
 </script>
 
 <div class="home">
-    <Navbar {apiCallStatus} {hideNavbarInSmallerScreens} {views} />
     <Content {commentList} {apiCallStatus} />
-    <NavButton {toggleNavbar} />
 </div>
 
 <style>

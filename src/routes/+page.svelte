@@ -1,4 +1,5 @@
 <script>
+    import { createIonosphere } from "ions-ts";
     import Home from "../components/Home.svelte";
     import Welcome from "../components/Welcome.svelte";
     import { fly } from "svelte/transition";
@@ -7,8 +8,14 @@
     const enter = () => {
         showStuff = true;
     };
+
+    $effect(() => {
+        const animate = createIonosphere('ions');
+        animate();
+    })
 </script>
 
+<canvas id='ions'></canvas>
 {#if showStuff}
     <div class="view" in:fly={{ x: 1000, duration: 1000 }}>
         <Home />
@@ -26,5 +33,13 @@
         left: 0;
         width: 100%;
         height: 100%;
+    }
+    #ions {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
     }
 </style>

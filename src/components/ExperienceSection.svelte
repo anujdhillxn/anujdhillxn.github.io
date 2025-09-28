@@ -93,9 +93,6 @@
             font-weight: 600;
             color: var(--text2);
         }
-        ul {
-            margin: 0;
-        }
     }
     :global(.body-container.show) {
         transform: scale(1);

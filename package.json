@@ -22,5 +22,8 @@
         "svelte-check": "^4.0.0",
         "typescript": "^5.0.0",
         "vite": "^6.2.5"
+    },
+    "dependencies": {
+        "ions-ts": "^0.1.0"
     }
 }
