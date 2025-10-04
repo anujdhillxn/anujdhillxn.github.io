@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Title from "./Title.svelte";
     import { info } from "$lib/info";
     import CustomRenderer from "./CustomRenderer.svelte";
     import { IconEmail } from "$lib/icons";
@@ -38,9 +37,6 @@
 </script>
 
 <div id="contact">
-    <div class="title">
-        <Title title="Contact" span="Contact" />
-    </div>
     <div class="ContactPage">
         <div id="icons" class="icons">
             {#each info.links as link}
@@ -108,6 +104,7 @@
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
+        justify-content: center;
         transform: scale(0);
         transform-origin: top;
         transition: all 0.5s ease-in-out;
@@ -123,5 +120,17 @@
     }
     :global(.icons.show) {
         transform: scale(1);
+    }
+    :global(.icon) {
+        @media screen and (max-width: 900px) {
+            width: 2.5em !important;
+            height: 2.5em !important;
+        }
+    }
+    :global(.contact-icon-holder .icon) {
+        @media screen and (max-width: 900px) {
+            width: 2.5em !important;
+            height: 2.5em !important;
+        }
     }
 </style>

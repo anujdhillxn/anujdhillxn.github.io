@@ -71,8 +71,8 @@
             <button onclick={postComment} class="btn"> Send </button>
         </div>
     </div>
-    <div class="display-area">
-        {#if apiCallStatus === LOADED}
+    {#if apiCallStatus === LOADED}
+        <div class="display-area">
             <div id="comment-list">
                 {#each commentList as item}
                     <div class="comment">
@@ -86,10 +86,8 @@
                     </div>
                 {/each}
             </div>
-        {:else}
-            <p>{apiCallStatus}</p>
-        {/if}
-    </div>
+        </div>
+    {/if}
 </div>
 
 <style>

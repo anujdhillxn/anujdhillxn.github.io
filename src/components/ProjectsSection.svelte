@@ -1,32 +1,42 @@
 <script lang="ts">
     import { info, type Project } from "$lib/info";
-    import Title from "./Title.svelte";
     import CustomRenderer from "./CustomRenderer.svelte";
-    import { createSectionObserver } from "$lib/sectionObserver";
+    import NavigationButton from "./NavigationButton.svelte";
 
-    const { selectedSkills } = $props();
+    let currentPage = $state(0);
+    let itemsPerPage = $state(3);
+    let totalPages = $derived(Math.ceil(info.projects.length / itemsPerPage));
 
-    const hasAppearedOnce: string[] = $state([]);
+    const nextPage = (e: MouseEvent) => {
+        e.stopPropagation();
+        if (currentPage < totalPages - 1) currentPage++;
+    };
+
+    const prevPage = (e: MouseEvent) => {
+        e.stopPropagation();
+        if (currentPage > 0) currentPage--;
+    };
+
+    const updateItemsPerPage = () => {
+        const newItemsPerPage = window.innerWidth <= 900 ? 1 : 3;
+        if (newItemsPerPage !== itemsPerPage) {
+            itemsPerPage = newItemsPerPage;
+            currentPage = 0;
+        }
+    };
 
     $effect(() => {
-        const observer = createSectionObserver(
-            Array.from(document.getElementsByClassName("project")),
-            (element) => {
-                hasAppearedOnce.push(element.id);
-            },
-            0.2
-        );
+        updateItemsPerPage();
+        window.addEventListener('resize', updateItemsPerPage);
+
         return () => {
-            observer.disconnect();
+            window.removeEventListener('resize', updateItemsPerPage);
         };
     });
 </script>
 
 {#snippet project(item: Project)}
-    <div
-        class={`project ${hasAppearedOnce.findIndex((proId) => proId === item.id) !== -1 ? `show` : ``}`}
-        id={item.id}
-    >
+    <div class="project" id={item.id}>
         <div class="image-data">
             <img src={item.image} alt={item.title} />
             <ul class="hover-items">
@@ -50,41 +60,66 @@
 {/snippet}
 
 <div id="projects" class="ProjectsPage">
-    <div class="title">
-        <Title title="Projects" span="Projects" />
-    </div>
-    <div class="projects-data">
-        <div class="projects">
-            {#each info.projects.filter((project) => {
-                for (const skill of selectedSkills) {
-                    if (project.skills
-                            .split(",")
-                            .map((item) => item.trim())
-                            .includes(skill)) return true;
-                }
-                return false;
-            }) as item}
-                {@render project(item)}
-            {/each}
+    <div class="projects-container">
+        <div class="rotate-left">
+            <NavigationButton onclick={prevPage} disabled={currentPage === 0}>
+                ▲
+            </NavigationButton>
+        </div>
+        <div class="projects-data">
+            {#key currentPage}
+                <div class="projects">
+                    {#each info.projects.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) as item}
+                        {@render project(item)}
+                    {/each}
+                </div>
+            {/key}
+        </div>
+        <div class="rotate-right">
+            <NavigationButton onclick={nextPage} disabled={currentPage === totalPages - 1}>
+                ▲
+            </NavigationButton>
         </div>
     </div>
 </div>
 
 <style>
+    .projects-container {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+    .rotate-left {
+        transform: rotate(-90deg);
+    }
+    .rotate-right {
+        transform: rotate(90deg);
+    }
+    .projects-data {
+        flex: 1;
+    }
     .projects {
-        width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         row-gap: 1rem;
         column-gap: 1rem;
+        animation: slideIn 0.5s ease-in-out;
         @media screen and (max-width: 900px) {
             grid-template-columns: repeat(1, 1fr);
         }
-
+    }
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    .projects {
         .project {
-            width: 0;
-            transform-origin: top;
-            transition: all 0.5s ease-in-out;
             text-align: center;
             h3 {
                 margin: 0;
@@ -93,7 +128,6 @@
             }
             .image-data {
                 position: relative;
-                text-align: center;
                 &::before {
                     content: "";
                     position: absolute;
@@ -115,8 +149,6 @@
                     height: 20rem;
                     max-width: 20rem;
                     object-fit: scale-down;
-                    @media screen and (max-width: 400px) {
-                    }
                 }
                 .hover-items {
                     list-style: none;
@@ -135,10 +167,6 @@
                     }
                 }
             }
-        }
-
-        :global(.project.show) {
-            width: 100%;
         }
     }
 </style>

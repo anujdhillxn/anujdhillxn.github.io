@@ -39,6 +39,8 @@ export type Experience = {
     startMonth: string;
     endMonth: string;
     description: string;
+    logo?: string;
+    linkedinUrl?: string;
 };
 
 const projects: Project[] = [
@@ -164,55 +166,28 @@ const projects: Project[] = [
 
 const experiences: Experience[] = [
     {
-        id: "anz",
-        employer: "Australia And New Zealand Banking Group Limited",
-        role: "Fullstack Developer",
-        skills: "Java,Spring,Git,ReactJS,Javascript,Typescript,C++,MS SQL Server",
+        id: "millennium",
+        employer: "Millennium",
+        role: "Software Engineer - Enterprise Risk Tech",
+        skills: "Python,AI,ReactJS,Javascript,Typescript,Data Visualization",
         type: "Full-time",
-        startMonth: "June, 2022",
+        startMonth: "June 2025",
         endMonth: "Present",
-        description: `
-            <p class="about-text">
-                <ul>
-                    <li>
-                        Created a <span>Static Data Viewer</span> (ReactJS, Spring) that converts XML data into a human-readable grid format, allows editing, and shows diff across versions. Received <span>Employee of the Month Award</span> (Feb 2023).
-                    </li>
-                    <li>
-                        Created a <span>Review System</span> (ReactJS, Spring, C++, MS SQL Server) that suspends any DB data modification coming from 3rd party source systems until required approvals are in place. Received <span>Employee of the Month Award</span> (Jan 2024).
-                    </li>
-                    <li>
-                        Collaborated with squads like FX, Rates, and XVA across India, Australia, and Singapore to add new functionalities, fix bugs, and improve performance.
-                    </li>
-                </ul>
-            </p>
-        `,
+        description: `Building AI-powered interfaces for risk managers and the CIO office with Python and React.`,
+        logo: "/logos/millennium.png", // TODO: Add actual logo
+        linkedinUrl: 'https://www.linkedin.com/company/millennium-management/posts/?feedView=all'
     },
     {
-        id: "mm",
-        employer: "Math Materate",
-        role: "Fullstack Developer",
-        skills: "ReactJS,Javascript,PostgreSQL,Git,Django",
-        type: "Internship",
-        startMonth: "May, 2021",
-        endMonth: "August, 2021",
-        description: `
-            <p class="about-text">
-                <ul>
-                    <li>
-                        Developed a <span>Live Classes Portal</span> which included features like creating and monitoring classes, resolving doubts, etc.
-                    </li>
-                    <li>
-                        Using ReactJS, made the entire UI, ranging from CSS to API Integration.
-                    </li>
-                    <li>
-                        Created the models and REST API used by the UI in Django Rest Framework.
-                    </li>
-                    <li>
-                        Hosted Jitsi Meet on an AWS EC2 instance which was used to host classes.
-                    </li>
-                </ul>
-            </p>
-        `,
+        id: "anz",
+        employer: "ANZ Bank",
+        role: "Fullstack Developer - Front Office Quant Tech",
+        skills: "Java,Spring,Git,ReactJS,Javascript,Typescript,C++,MS SQL Server",
+        type: "Full-time",
+        startMonth: "June 2022",
+        endMonth: "June 2025",
+        description: `Built tools for traders and quants using Spring and React.`,
+        logo: "/logos/anz.png", // TODO: Add actual logo
+        linkedinUrl: 'https://www.linkedin.com/company/anz/posts/?feedView=all'
     },
 ];
 
@@ -246,9 +221,9 @@ const links = [
 export const info = {
     about: `
         <p class="about-text">
-            I graduated from <span>IIT Delhi</span> in 2022 and since then have been working to make seamless web applications.
-            <br /> As a <span>full-stack developer</span>, I wield a versatile toolkit that empowers me to create and manage entire web applications. On the front end, I have crafted interactive user interfaces using ReactJS. On the back end, I have worked with Node.js and Spring to build robust server-side logic.
-            <br /> In my free time, I like to play video games, do competitive programming, and play guitar.
+            Graduated from <span>IIT Delhi</span> in 2022, been building web apps since.
+            <br /> I work with <span>ReactJS</span> on the frontend and <span>Node.js/Spring</span> on the backend. Pretty much the full stack.
+            <br /> When I'm not coding, you'll find me gaming, solving algorithms, or jamming on guitar.
         </p>
     `,
     cvLink: "https://drive.google.com/file/d/1w2E-dRdiixj7ovxEgP6CI_xsAJPE7TGe/view?usp=sharing",
@@ -258,7 +233,6 @@ export const info = {
     projects,
     experiences,
     allSkills: [
-        "All",
         ...new Set(
             [...projects, ...experiences]
                 .map((project) => project.skills)

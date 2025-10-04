@@ -16,9 +16,10 @@
         color: var(--text1);
         position: relative;
         letter-spacing: 0.1rem;
+        margin-bottom: 2rem;
         h3 {
             margin: 0;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         &::after {
             content: "";
