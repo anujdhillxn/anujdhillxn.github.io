@@ -15,7 +15,7 @@
         if (!ionosphereStarted) {
             ionosphereStarted = true;
             const bgColor = getComputedStyle(document.body).backgroundColor;
-            ionosphereInstance = createIonosphere('ions', {repaint: bgColor, trailMaxLength: 15});
+            ionosphereInstance = createIonosphere('ions', {repaint: bgColor, trailMaxLength: 0});
             ionosphereInstance.start();
             showNavigationButtons?.();
         }
