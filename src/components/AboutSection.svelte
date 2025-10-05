@@ -1,11 +1,15 @@
 <script lang="ts">
     import CustomRenderer from "./CustomRenderer.svelte";
+    import Title from "./Title.svelte";
+    import Button from "./Button.svelte";
     import { info } from "$lib/info";
     import { typeText } from "$lib/animation";
     import { createIonosphere } from "ions-ts";
     import { isDarkTheme } from "$lib/theme";
+    import { visitedSections, markSectionVisited } from "$lib/visitedSections";
 
-    let { hasBeenVisited, onAnimationComplete, showNavigationButtons } = $props();
+    const SECTION_INDEX = 0;
+    let { showNavigationButtons } = $props();
     let ionosphereStarted = false;
     let ionosphereInstance: any = null;
 
@@ -13,7 +17,7 @@
         if (!ionosphereStarted) {
             ionosphereStarted = true;
             const bgColor = getComputedStyle(document.body).backgroundColor;
-            ionosphereInstance = createIonosphere('ions', {repaint: bgColor});
+            ionosphereInstance = createIonosphere('ions', {repaint: bgColor, trailMaxLength: 15});
             ionosphereInstance.start();
             showNavigationButtons?.();
         }
@@ -33,13 +37,19 @@
     });
 
     $effect(() => {
+        const leftHeader = document.getElementById("left-header");
         const aboutContent = document.getElementById("about-content");
+        const rightHeader = document.getElementById("right-header");
+        const linksContent = document.getElementById("links-content");
         const btn = document.getElementById("cv-btn");
 
-        if (!aboutContent) return;
+        if (!leftHeader || !aboutContent || !rightHeader || !linksContent) return;
 
-        if (hasBeenVisited) {
+        if ($visitedSections.has(SECTION_INDEX)) {
+            leftHeader.style.opacity = "1";
             aboutContent.style.opacity = "1";
+            rightHeader.style.opacity = "1";
+            linksContent.style.opacity = "1";
             if (btn) {
                 btn.style.opacity = "1";
                 startIonosphere();
@@ -47,75 +57,108 @@
             return;
         }
 
-        typeText(aboutContent, () => {
-            if (btn) {
-                btn.style.opacity = "1";
-                startIonosphere();
-            }
-            onAnimationComplete?.();
-        }, 20);
+        setTimeout(() => {
+            typeText(leftHeader, () => {
+                typeText(aboutContent, () => {
+                    typeText(rightHeader, () => {
+                        typeText(linksContent, () => {
+                            if (btn) {
+                                btn.style.opacity = "1";
+                                startIonosphere();
+                            }
+                            markSectionVisited(SECTION_INDEX);
+                        }, 20);
+                    }, 20);
+                }, 20);
+            }, 20);
+        }, 1000);
     });
 </script>
 
 <div id="about">
-    <div class="ImageSection">
-        <div class="about-info">
-            <div id="about-content" style="opacity: 0;">
-                <h4>
-                    Hey there, I am <span> Anuj</span>
-                </h4>
-                <CustomRenderer htmlString={info.about} />
+    <div class="about-container">
+        <div class="about-left">
+            <div id="left-header" style="opacity: 0;">
+                <h3>What I do</h3>
             </div>
-            <button id="cv-btn" class="btn" style="opacity: 0; transition: opacity 0.5s ease-in-out;">
-                <a href={info.cvLink}>Download CV</a>
-            </button>
+            <div id="about-content" style="opacity: 0;">
+                <p class="about-text">
+                    I build things for the web.
+                    <br /> Backend, frontend, whatever works.
+                    <br /> Into AI, automation, and clean UX.
+                    <br /> Scroll down to see my work.
+                </p>
+            </div>
+            <div id="cv-btn" style="opacity: 0; transition: opacity 0.5s ease-in-out;">
+                <Button href={info.cvLink}>Download CV</Button>
+            </div>
+        </div>
+        <div class="about-right">
+            <div id="right-header" style="opacity: 0;">
+                <h3>Know me better</h3>
+            </div>
+            <div id="links-content" style="opacity: 0;">
+                <p>
+                    <a href="https://www.imdb.com/title/tt2560140/" target="_blank" rel="noreferrer">Watch this</a>
+                    <br /><a href="https://www.google.com/maps/place/cult+indiranagar+6th+main/data=!4m2!3m1!1s0x3bae1792bc4dcc21:0x4a05ef69eabd2b18?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noreferrer">Come here</a>
+                    <br /><a href="https://open.spotify.com/blend/taste-match/fd74444c446e314f?si=3IfrrGXtQeqGSwvBBKIfWg&fallback=getapp&blendDecoration=5f9c38d2" target="_blank" rel="noreferrer">Blend?</a>
+                    <br /><a href="https://github.com/anujdhillxn/lucive" target="_blank" rel="noreferrer">Contribute</a>
+                    <br /><a href="https://store.steampowered.com/app/291550/Brawlhalla/" target="_blank" rel="noreferrer">2s?</a>
+                </p>
+            </div>
         </div>
     </div>
 </div>
 
 <style>
-    .ImageSection {
+    .about-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
         width: 100%;
-        .about-info {
-            h4 {
-                font-size: 2rem;
-                margin: 0;
-            }
-        }
     }
-    .btn {
-        padding: 1.5rem 3rem;
-        background-color: var(--primary2);
-        outline: none;
-        border: none;
-        font-family: inherit;
-        font-size: inherit;
+
+    .about-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about-left h3,
+    .about-right h3 {
+        margin: 0 0 0.5rem 0;
+        font-weight: 600;
         color: var(--text1);
-        text-transform: uppercase;
-        cursor: pointer;
-        position: relative;
-        transition: all 0.8s ease-in-out;
-        margin-top: 1.5rem;
-        &::after {
-            position: absolute;
-            content: "";
-            width: 0;
-            height: 0.3rem;
-            left: 0;
-            bottom: 0;
-            background-color: var(--primary2);
-            transition: all 0.4s ease-in-out;
-        }
-        &:hover::after {
-            width: 100%;
-        }
-        a {
-            text-decoration: none;
-            color: var(--text1);
+    }
+
+    .about-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-left;
+        text-align: left;
+    }
+
+    @media (max-width: 768px) {
+        .about-container {
+            grid-template-columns: 1fr;
         }
     }
-    .btn:hover {
-        background-color: var(--background2);
+
+    .about-text,
+    .about-right p {
+        margin: 0;
         color: var(--text2);
+        font-size: 1.125rem;
+        line-height: 1.8;
+    }
+
+    .about-right a {
+        color: var(--primary2);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .about-right a:hover {
+        color: var(--primary1);
+        text-decoration: underline;
     }
 </style>

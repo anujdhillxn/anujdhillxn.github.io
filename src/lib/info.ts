@@ -45,6 +45,23 @@ export type Experience = {
 
 const projects: Project[] = [
     {
+        id: "ions",
+        skills: "Typescript,Canvas API,Animation",
+        links: [
+            {
+                url: "https://github.com/anujdhillxn/ions-ts",
+                icon: IconGithub,
+            },
+            {
+                url: "https://www.npmjs.com/package/ions-ts",
+                icon: IconLink,
+            },
+        ],
+        image: lucive, // TODO: Add ions image
+        title: "Ions.ts",
+        description: "Lightweight canvas animation library - the background you're seeing right now",
+    },
+    {
         id: "lucive",
         skills: "Typescript,React Native, Python, Java, Django, PostgreSQL",
         links: [
@@ -221,11 +238,18 @@ const links = [
 export const info = {
     about: `
         <p class="about-text">
-            Been building software since <span>2021</span>.
-            <br /> I make things work on both sides - what you see and what makes it tick.
-            <br /> Scroll ahead to see what I've been up to.
+            I build things for the web.
+            <br /> I enjoy solving problems and making software that actually works well.
+            <br /> Scroll down to see my work.
         </p>
     `,
+    importantThings: [
+        "Clean, maintainable code",
+        "Solving real problems",
+        "Continuous learning",
+        "User experience",
+        "Performance optimization",
+    ],
     cvLink: "https://drive.google.com/file/d/1w2E-dRdiixj7ovxEgP6CI_xsAJPE7TGe/view?usp=sharing",
     email: "anuj.dhillon.14@gmail.com",
     phoneNumber: "+918569919298",

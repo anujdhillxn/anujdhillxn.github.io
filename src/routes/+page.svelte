@@ -8,15 +8,14 @@
     import ProjectsSection from "../components/ProjectsSection.svelte";
     import SkillsSection from "../components/SkillsSection.svelte";
     import Section from "../components/Section.svelte";
-    import NavigationButton from "../components/NavigationButton.svelte";
+    import Navbar from "../components/Navbar.svelte";
     // import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
 
     let apiCallStatus = $state(LOADING);
     let commentList: Comment[] = $state([]);
     let views = $state("");
     let currentSection = $state(0);
-    let isAnimating = $state(false);
-    let animatedSections = $state(new Set());
+    let isNavigating = $state(false);
     let showNavigation = $state(false);
 
     export function showNavigationButtons() {
@@ -38,22 +37,22 @@
     };
 
     const goDown = () => {
-        if (isAnimating || currentSection >= 4) return;
-        isAnimating = true;
+        if (isNavigating || currentSection >= 4) return;
+        isNavigating = true;
         currentSection++;
-        setTimeout(() => { isAnimating = false; }, 500);
+        setTimeout(() => { isNavigating = false; }, 500);
     };
 
     const goUp = () => {
-        if (isAnimating || currentSection <= 0) return;
-        isAnimating = true;
+        if (isNavigating || currentSection <= 0) return;
+        isNavigating = true;
         currentSection--;
-        setTimeout(() => { isAnimating = false; }, 500);
+        setTimeout(() => { isNavigating = false; }, 500);
     };
 
     const handleWheel = (e: WheelEvent) => {
         e.preventDefault();
-        if (isAnimating) return;
+        if (isNavigating) return;
 
         if (e.deltaY > 0) {
             goDown();
@@ -75,15 +74,20 @@
 </script>
 
 <canvas id='ions'></canvas>
+<div class="navbar-container">
+    {#if showNavigation}
+        <Navbar {currentSection} {goUp} {goDown} />
+    {/if}
+</div>
 <div class="content">
     {#key currentSection}
         {#if currentSection === 0}
-            <Section title="">
-                <AboutSection hasBeenVisited={animatedSections.has(0)} onAnimationComplete={() => animatedSections.add(0)} {showNavigationButtons} />
+            <Section title="About">
+                <AboutSection {showNavigationButtons} />
             </Section>
         {:else if currentSection === 1}
             <Section title="Skills">
-                <SkillsSection hasBeenVisited={animatedSections.has(1)} onAnimationComplete={() => animatedSections.add(1)} />
+                <SkillsSection />
             </Section>
         {:else if currentSection === 2}
             <Section title="Experience">
@@ -101,21 +105,6 @@
     {/key}
 </div>
 
-{#if showNavigation}
-<div class="navigation-arrows">
-    <div class="buttons-row">
-        <NavigationButton onclick={(e: MouseEvent) => { e.stopPropagation(); goUp(); }} disabled={currentSection === 0}>
-            ▲
-        </NavigationButton>
-        <NavigationButton onclick={(e: MouseEvent) => { e.stopPropagation(); goDown(); }} disabled={currentSection === 4}>
-            ▼
-        </NavigationButton>
-        <!-- <ThemeSwitcher /> -->
-    </div>
-    <p class="nav-hint">{currentSection + 1}/5</p>
-</div>
-{/if}
-
 <style>
     #ions {
         position: fixed;
@@ -125,30 +114,23 @@
         height: 100%;
         z-index: -1;
     }
-    .content {
-        height: 100vh;
-        overflow: hidden;
-    }
-    .navigation-arrows {
-        position: fixed;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
+    .navbar-container {
+        height: 10vh;
         display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 0.5rem;
-        z-index: 100;
+        justify-content: center;
+        padding: 0 1rem;
     }
-    .buttons-row {
-        display: flex;
-        gap: 0.5rem;
+
+    @media screen and (max-width: 768px) {
+        .navbar-container {
+            padding: 0;
+        }
     }
-    .nav-hint {
-        font-size: 0.75rem;
-        color: var(--text3);
-        margin: 0.25rem 0 0 0;
-        opacity: 0.6;
+
+    .content {
+        height: 90vh;
+        overflow: hidden;
     }
     :global(p, li) {
         color: var(--text3);

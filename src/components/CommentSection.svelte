@@ -85,85 +85,103 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
-        .write-area {
-            .inputtext {
-                text-align: center;
-                textarea {
-                    width: 100%;
-                    resize: none;
-                    box-sizing: border-box;
-                    border: none;
-                    background-color: var(--background2);
-                    color: var(--text1);
-                    margin-bottom: 0.5rem;
-                    font-family: inherit;
-                    padding: 0.5rem;
-                    font-size: 1rem;
-                }
-            }
-            .submit-button {
-                text-align: center;
-                .btn {
-                    padding: 1rem 2rem;
-                    background-color: var(--primary2);
-                    outline: none;
-                    border: none;
-                    font-family: inherit;
-                    font-size: inherit;
-                    color: var(--text1);
-                    text-transform: uppercase;
-                    cursor: pointer;
-                    margin-top: 1rem;
-                    position: relative;
-                    transition: all 0.8s ease-in-out;
-                    &::after {
-                        position: absolute;
-                        content: "";
-                        width: 0;
-                        height: 0.3rem;
-                        left: 0;
-                        bottom: 0;
-                        background-color: var(--primary2);
-                        transition: all 0.4s ease-in-out;
-                    }
-                    &:hover::after {
-                        width: 100%;
-                    }
-                }
-                .btn:hover {
-                    background-color: var(--background2);
-                    color: var(--text2);
-                }
-            }
-        }
-        @media screen and (max-width: 1270px) {
+    }
+
+    .write-area .inputtext {
+        text-align: center;
+    }
+
+    .write-area .inputtext textarea {
+        width: 100%;
+        resize: none;
+        box-sizing: border-box;
+        border: none;
+        background-color: var(--background2);
+        color: var(--text1);
+        margin-bottom: 0.5rem;
+        font-family: inherit;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .write-area .submit-button {
+        text-align: center;
+    }
+
+    .write-area .submit-button .btn {
+        padding: 1rem 2rem;
+        background-color: var(--primary2);
+        outline: none;
+        border: none;
+        font-family: inherit;
+        font-size: inherit;
+        color: var(--text1);
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 1rem;
+        position: relative;
+        transition: all 0.8s ease-in-out;
+    }
+
+    .write-area .submit-button .btn::after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0.3rem;
+        left: 0;
+        bottom: 0;
+        background-color: var(--primary2);
+        transition: all 0.4s ease-in-out;
+    }
+
+    .write-area .submit-button .btn:hover::after {
+        width: 100%;
+    }
+
+    .write-area .submit-button .btn:hover {
+        background-color: var(--background2);
+        color: var(--text2);
+    }
+
+    .write-area .submit-button .btn:focus-visible {
+        outline: 2px solid var(--primary1);
+        outline-offset: 4px;
+    }
+
+    @media screen and (max-width: 1270px) {
+        .comment-box {
             grid-template-columns: repeat(1, 1fr);
-            .write-area {
-                width: 100%;
-                margin-bottom: 1rem;
-            }
         }
-        .display-area {
-            height: 10rem;
-            overflow-y: scroll;
-            #comment-list {
-                opacity: 0;
-            }
-            .comment {
-                margin-bottom: 1rem;
-                .comment-info {
-                    p {
-                        font-size: 0.8rem;
-                        color: var(--text2);
-                    }
-                }
-                .comment-body {
-                    font-size: 1rem;
-                    p {
-                        margin: 1rem 0 0 0;
-                    }
-                }
-            }
+
+        .comment-box .write-area {
+            width: 100%;
+            margin-bottom: 1rem;
         }
+    }
+
+    .display-area {
+        height: 10rem;
+        overflow-y: scroll;
+    }
+
+    .display-area #comment-list {
+        opacity: 0;
+    }
+
+    .display-area .comment {
+        margin-bottom: 1rem;
+    }
+
+    .display-area .comment .comment-info p {
+        font-size: 0.8rem;
+        color: var(--text2);
+    }
+
+    .display-area .comment .comment-body {
+        font-size: 1rem;
+    }
+
+    .display-area .comment .comment-body p {
+        margin: 1rem 0 0 0;
     }
 </style>

@@ -12,10 +12,10 @@
         border: none;
         border-radius: 50%;
         color: var(--text1);
-        font-size: 1.2rem;
+        font-size: 0.875rem;
         cursor: pointer;
-        width: 3rem;
-        height: 3rem;
+        width: 2rem;
+        height: 2rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -24,6 +24,10 @@
     .nav-button:hover:not(:disabled) {
         background-color: var(--primary2);
         transform: scale(1.1);
+    }
+    .nav-button:focus-visible {
+        outline: 2px solid var(--primary2);
+        outline-offset: 2px;
     }
     .nav-button:disabled {
         opacity: 0.2;

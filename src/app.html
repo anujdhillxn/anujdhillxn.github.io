@@ -23,10 +23,16 @@
                 --accent2: light-dark(hsl(300, 47%, 60%), hsl(300, 47%, 68%)); /* Accent 2 */
                 --danger: light-dark(hsl(0, 100%, 65%), hsl(0, 100%, 75%)); /* Danger color */
             }
+
+			html {
+				scroll-behavior: smooth;
+			}
+
 			body {
 				margin: 0;
 				font-family: "Sora", sans-serif;
 				font-size: 1.1rem;
+				line-height: 1.6;
 				color: var(--text1);
 				background-color: var(--background1);
 				height: 100vh;
@@ -35,6 +41,12 @@
 					color: var(--primary2);
 				}
 			}
+
+			h1 { font-size: 3rem; line-height: 1.2; }
+			h2 { font-size: 2rem; line-height: 1.3; }
+			h3 { font-size: 1.5rem; line-height: 1.4; }
+			h4 { font-size: 1.25rem; line-height: 1.4; }
+			p { font-size: 1rem; line-height: 1.6; }
 			*::-webkit-scrollbar {
 			width: 4px;
 			}

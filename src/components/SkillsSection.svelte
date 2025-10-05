@@ -1,14 +1,15 @@
 <script lang="ts">
     import { info } from "$lib/info";
     import Card from "./Card.svelte";
+    import { visitedSections, markSectionVisited } from "$lib/visitedSections";
 
+    const SECTION_INDEX = 1;
     const allSkills = info.allSkills;
-    let { hasBeenVisited, onAnimationComplete } = $props();
 
     $effect(() => {
         const skillCards = document.querySelectorAll('.skill-card');
 
-        if (hasBeenVisited) {
+        if ($visitedSections.has(SECTION_INDEX)) {
             skillCards.forEach((card) => {
                 card.classList.add('show');
             });
@@ -19,7 +20,7 @@
             setTimeout(() => {
                 card.classList.add('show');
                 if (index === skillCards.length - 1) {
-                    onAnimationComplete?.();
+                    markSectionVisited(SECTION_INDEX);
                 }
             }, index * 50);
         });
@@ -43,17 +44,22 @@
         gap: 0.75rem;
         margin-bottom: 1rem;
     }
+
     :global(.skill-card) {
         padding: 1rem 2rem !important;
         color: var(--text2);
         opacity: 0;
         transform: scale(0);
         transition: all 0.3s ease-in-out;
-        @media screen and (max-width: 900px) {
+    }
+
+    @media screen and (max-width: 900px) {
+        :global(.skill-card) {
             padding: 0.75rem 1.5rem !important;
             font-size: 1rem;
         }
     }
+
     :global(.skill-card.show) {
         opacity: 1;
         transform: scale(1);
