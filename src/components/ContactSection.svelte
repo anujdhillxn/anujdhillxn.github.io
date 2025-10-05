@@ -91,7 +91,7 @@
         display: flex;
         align-items: center;
         justify-content: space-around;
-        padding: 0.75rem 0 !important;
+        padding: 0 !important;
     }
 
     .right-items .label {
@@ -123,6 +123,10 @@
 
     .separator-text {
         margin-bottom: 1rem;
+    }
+
+    .separator-text h2 {
+        font-size: 1.2rem;
     }
 
     .icons {

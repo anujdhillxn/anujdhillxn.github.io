@@ -13,7 +13,7 @@
 <style>
     .snap-section {
         height: 100%;
-        padding: 20vh 20% 0 20%;
+        padding: 15vh 20% 0 20%;
         display: flex;
         flex-direction: column;
         animation: slideIn 0.5s ease-in-out;

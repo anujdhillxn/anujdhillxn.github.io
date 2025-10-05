@@ -20,7 +20,7 @@
     };
 
     const updateItemsPerPage = () => {
-        const newItemsPerPage = 3;
+        const newItemsPerPage = window.innerWidth <= 900 ? 2 : 3;
         if (newItemsPerPage !== itemsPerPage) {
             itemsPerPage = newItemsPerPage;
             currentPage = 0;

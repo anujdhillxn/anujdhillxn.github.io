@@ -58,19 +58,34 @@
         }
 
         setTimeout(() => {
+            let leftComplete = false;
+            let rightComplete = false;
+
+            const checkComplete = () => {
+                if (leftComplete && rightComplete) {
+                    if (btn) {
+                        btn.style.opacity = "1";
+                        startIonosphere();
+                    }
+                    markSectionVisited(SECTION_INDEX);
+                }
+            };
+
+            // Type left section
             typeText(leftHeader, () => {
                 typeText(aboutContent, () => {
-                    typeText(rightHeader, () => {
-                        typeText(linksContent, () => {
-                            if (btn) {
-                                btn.style.opacity = "1";
-                                startIonosphere();
-                            }
-                            markSectionVisited(SECTION_INDEX);
-                        }, 20);
-                    }, 20);
+                    leftComplete = true;
+                    checkComplete();
                 }, 20);
             }, 20);
+
+            // Type right section simultaneously (slightly slower)
+            typeText(rightHeader, () => {
+                typeText(linksContent, () => {
+                    rightComplete = true;
+                    checkComplete();
+                }, 50);
+            }, 50);
         }, 1000);
     });
 </script>
@@ -114,7 +129,7 @@
     .about-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        gap: 2rem;
         width: 100%;
     }
 
@@ -134,7 +149,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-left;
-        text-align: left;
+        text-align: right;
     }
 
     @media (max-width: 768px) {

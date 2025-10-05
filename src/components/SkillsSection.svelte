@@ -46,17 +46,18 @@
     }
 
     :global(.skill-card) {
-        padding: 1rem 2rem !important;
+        padding: 0.75rem 1.5rem !important;
         color: var(--text2);
         opacity: 0;
         transform: scale(0);
         transition: all 0.3s ease-in-out;
+        font-size: 0.95rem;
     }
 
     @media screen and (max-width: 900px) {
         :global(.skill-card) {
-            padding: 0.75rem 1.5rem !important;
-            font-size: 1rem;
+            padding: 0.6rem 1.2rem !important;
+            font-size: 0.85rem;
         }
     }
 

@@ -12,7 +12,7 @@
 <style>
     .title {
         text-transform: uppercase;
-        font-size: 2.2rem;
+        font-size: 2rem;
         color: var(--text1);
         position: relative;
         letter-spacing: 0.1rem;
