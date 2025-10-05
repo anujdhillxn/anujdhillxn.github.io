@@ -73,19 +73,23 @@
 
         touchEndY = e.touches[0].clientY;
         const swipeDistance = touchStartY - touchEndY;
-        const maxPreviewDistance = 30; // Max distance to show preview
+        const maxPreviewDistance = 50; // Max distance to show preview
+        const minSwipeThreshold = 100; // Don't trigger if swipe is too large
 
-        // Calculate preview offset (limited to maxPreviewDistance)
-        const previewOffset = Math.max(-maxPreviewDistance, Math.min(maxPreviewDistance, swipeDistance));
+        // Only show preview if swipe is within reasonable bounds
+        if (Math.abs(swipeDistance) < minSwipeThreshold) {
+            // Calculate preview offset (limited to maxPreviewDistance)
+            const previewOffset = Math.max(-maxPreviewDistance, Math.min(maxPreviewDistance, swipeDistance));
 
-        // Calculate opacity change (fade slightly as you swipe)
-        const opacityChange = Math.abs(previewOffset) / maxPreviewDistance * 0.3;
+            // Calculate opacity change (fade slightly as you swipe)
+            const opacityChange = Math.abs(previewOffset) / maxPreviewDistance * 0.3;
 
-        const content = document.querySelector('.content') as HTMLElement;
-        if (content) {
-            content.style.transform = `translateY(${-previewOffset}px)`;
-            content.style.opacity = `${1 - opacityChange}`;
-            content.style.transition = 'none';
+            const content = document.querySelector('.content') as HTMLElement;
+            if (content) {
+                content.style.transform = `translateY(${-previewOffset}px)`;
+                content.style.opacity = `${1 - opacityChange}`;
+                content.style.transition = 'none';
+            }
         }
     };
 
@@ -101,7 +105,7 @@
         }
 
         const swipeDistance = touchStartY - touchEndY;
-        const minSwipeDistance = 50; // Minimum distance for a swipe
+        const minSwipeDistance = 100; // Minimum distance for a swipe
 
         if (Math.abs(swipeDistance) > minSwipeDistance) {
             if (swipeDistance > 0) {

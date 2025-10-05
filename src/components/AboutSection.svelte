@@ -1,6 +1,4 @@
 <script lang="ts">
-    import CustomRenderer from "./CustomRenderer.svelte";
-    import Title from "./Title.svelte";
     import Button from "./Button.svelte";
     import { info } from "$lib/info";
     import { typeText } from "$lib/animation";

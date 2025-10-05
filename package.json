@@ -24,6 +24,6 @@
         "vite": "^6.2.5"
     },
     "dependencies": {
-        "ions-ts": "^1.1.0"
+        "ions-ts": "^1.1.1"
     }
 }

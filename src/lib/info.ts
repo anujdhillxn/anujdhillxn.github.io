@@ -1,11 +1,3 @@
-import redditscraper from "../img/projects/redditscraper.jpg";
-import visualcursor from "../img/projects/visualcursor.jpg";
-import funcdiff from "../img/projects/funcdiff.jpg";
-import flipbook from "../img/projects/flipbook.jpg";
-import igbotImg from "../img/projects/igbot.jpg";
-import cptemplates from "../img/projects/cptemplates.jpg";
-import agnocpeed from "../img/projects/agnocpeed.jpg";
-import lucive from "../img/projects/lucive.png";
 import {
     IconCodechef,
     IconCodeforces,
@@ -25,7 +17,6 @@ export type Project = {
     id: string;
     skills: string;
     links: ProjectLink[];
-    image: string;
     title: string;
     description: string;
 };
@@ -39,7 +30,6 @@ export type Experience = {
     startMonth: string;
     endMonth: string;
     description: string;
-    logo?: string;
     linkedinUrl?: string;
 };
 
@@ -57,7 +47,6 @@ const projects: Project[] = [
                 icon: IconLink,
             },
         ],
-        image: lucive, // TODO: Add ions image
         title: "Ions.ts",
         description: "Lightweight canvas animation library - the background you're seeing right now",
     },
@@ -74,7 +63,6 @@ const projects: Project[] = [
                 icon: IconLink,
             },
         ],
-        image: lucive,
         title: "Lucive",
         description: "Android app for digital detox and screentime management",
     },
@@ -91,7 +79,6 @@ const projects: Project[] = [
                 icon: IconCodeforces,
             },
         ],
-        image: agnocpeed,
         title: "Agnocpeed",
         description: "Desktop app for competitive programming support.",
     },
@@ -104,10 +91,9 @@ const projects: Project[] = [
                 icon: IconGithub,
             },
         ],
-        image: igbotImg,
         title: "Instagram Bot",
         description:
-            "Automated bot for instagram using puppeteer and expressjs for posting, scraping and gathering followers",
+            "Automated bot for instagram for posting, scraping and gathering followers",
     },
     {
         id: "cpb",
@@ -118,7 +104,6 @@ const projects: Project[] = [
                 icon: IconGithub,
             },
         ],
-        image: cptemplates,
         title: "Competitive Programming Templates",
         description:
             "Implementations of various standard Data structures and algorithms",
@@ -136,7 +121,6 @@ const projects: Project[] = [
                 icon: IconLink,
             },
         ],
-        image: funcdiff,
         title: "Function Differentiator",
         description: "Flask app to find derivative of a function",
     },
@@ -149,7 +133,6 @@ const projects: Project[] = [
                 icon: IconGithub,
             },
         ],
-        image: flipbook,
         title: "Flipbook language",
         description: "A language for generating flipbooks using pictures",
     },
@@ -191,7 +174,6 @@ const experiences: Experience[] = [
         startMonth: "June 2025",
         endMonth: "Present",
         description: `Building AI-powered interfaces for risk managers and the CIO office with Python and React.`,
-        logo: "/logos/millennium.png", // TODO: Add actual logo
         linkedinUrl: 'https://www.linkedin.com/company/millennium-management/posts/?feedView=all'
     },
     {
@@ -203,7 +185,6 @@ const experiences: Experience[] = [
         startMonth: "June 2022",
         endMonth: "June 2025",
         description: `Built tools for traders and quants using Spring and React.`,
-        logo: "/logos/anz.png", // TODO: Add actual logo
         linkedinUrl: 'https://www.linkedin.com/company/anz/posts/?feedView=all'
     },
 ];
