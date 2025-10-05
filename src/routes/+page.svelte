@@ -61,14 +61,80 @@
         }
     };
 
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+        touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+        if (isNavigating) return;
+
+        touchEndY = e.touches[0].clientY;
+        const swipeDistance = touchStartY - touchEndY;
+        const maxPreviewDistance = 30; // Max distance to show preview
+
+        // Calculate preview offset (limited to maxPreviewDistance)
+        const previewOffset = Math.max(-maxPreviewDistance, Math.min(maxPreviewDistance, swipeDistance));
+
+        // Calculate opacity change (fade slightly as you swipe)
+        const opacityChange = Math.abs(previewOffset) / maxPreviewDistance * 0.3;
+
+        const content = document.querySelector('.content') as HTMLElement;
+        if (content) {
+            content.style.transform = `translateY(${-previewOffset}px)`;
+            content.style.opacity = `${1 - opacityChange}`;
+            content.style.transition = 'none';
+        }
+    };
+
+    const handleTouchEnd = () => {
+        const content = document.querySelector('.content') as HTMLElement;
+
+        if (isNavigating) {
+            if (content) {
+                content.style.transform = '';
+                content.style.transition = '';
+            }
+            return;
+        }
+
+        const swipeDistance = touchStartY - touchEndY;
+        const minSwipeDistance = 50; // Minimum distance for a swipe
+
+        if (Math.abs(swipeDistance) > minSwipeDistance) {
+            if (swipeDistance > 0) {
+                // Swiped up - go down
+                goDown();
+            } else {
+                // Swiped down - go up
+                goUp();
+            }
+        }
+
+        // Reset transform and opacity
+        if (content) {
+            content.style.transform = '';
+            content.style.opacity = '';
+            content.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+        }
+    };
+
     $effect(() => {
         fetchData();
 
         const content = document.querySelector('.content');
         content?.addEventListener('wheel', handleWheel as any, { passive: false });
+        content?.addEventListener('touchstart', handleTouchStart as any, { passive: true });
+        content?.addEventListener('touchmove', handleTouchMove as any, { passive: true });
+        content?.addEventListener('touchend', handleTouchEnd as any, { passive: true });
 
         return () => {
             content?.removeEventListener('wheel', handleWheel as any);
+            content?.removeEventListener('touchstart', handleTouchStart as any);
+            content?.removeEventListener('touchmove', handleTouchMove as any);
+            content?.removeEventListener('touchend', handleTouchEnd as any);
         };
     })
 </script>

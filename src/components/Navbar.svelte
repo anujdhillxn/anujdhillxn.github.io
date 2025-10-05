@@ -30,7 +30,7 @@
         justify-content: space-between;
         gap: 2rem;
         box-shadow: 0 4px 6px color-mix(in srgb, var(--background1) 90%, transparent);
-        width: 90%;
+        width: 85%;
         max-width: 800px;
     }
 

@@ -58,34 +58,21 @@
         }
 
         setTimeout(() => {
-            let leftComplete = false;
-            let rightComplete = false;
-
-            const checkComplete = () => {
-                if (leftComplete && rightComplete) {
-                    if (btn) {
-                        btn.style.opacity = "1";
-                        startIonosphere();
-                    }
-                    markSectionVisited(SECTION_INDEX);
-                }
-            };
-
-            // Type left section
+            // Type left section first
             typeText(leftHeader, () => {
                 typeText(aboutContent, () => {
-                    leftComplete = true;
-                    checkComplete();
+                    // Then type right section
+                    typeText(rightHeader, () => {
+                        typeText(linksContent, () => {
+                            if (btn) {
+                                btn.style.opacity = "1";
+                                startIonosphere();
+                            }
+                            markSectionVisited(SECTION_INDEX);
+                        }, 20);
+                    }, 20);
                 }, 20);
             }, 20);
-
-            // Type right section simultaneously (slightly slower)
-            typeText(rightHeader, () => {
-                typeText(linksContent, () => {
-                    rightComplete = true;
-                    checkComplete();
-                }, 50);
-            }, 50);
         }, 1000);
     });
 </script>
@@ -104,9 +91,6 @@
                     <br /> Scroll down to see my work.
                 </p>
             </div>
-            <div id="cv-btn" style="opacity: 0; transition: opacity 0.5s ease-in-out;">
-                <Button href={info.cvLink}>Download CV</Button>
-            </div>
         </div>
         <div class="about-right">
             <div id="right-header" style="opacity: 0;">
@@ -122,6 +106,9 @@
                 </p>
             </div>
         </div>
+    </div>
+    <div id="cv-btn" class="cv-button-container" style="opacity: 0; transition: opacity 0.5s ease-in-out;">
+        <Button href={info.cvLink}>Download CV</Button>
     </div>
 </div>
 
@@ -149,7 +136,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-left;
-        text-align: right;
+        text-align: left;
     }
 
     @media (max-width: 768px) {
@@ -175,5 +162,11 @@
     .about-right a:hover {
         color: var(--primary1);
         text-decoration: underline;
+    }
+
+    .cv-button-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 2rem;
     }
 </style>
