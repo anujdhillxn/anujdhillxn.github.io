@@ -2,15 +2,13 @@
     import { info, type Experience } from "$lib/info";
     import CustomRenderer from "./CustomRenderer.svelte";
     import { IconLinkedin } from "$lib/icons";
+    import Card from "./Card.svelte";
 </script>
 
 {#snippet experience(item: Experience)}
-    <div class="experience-card">
+    <Card>
         <div class="card-header">
             <div class="company-info">
-                <!-- {#if item.logo}
-                    <img src={item.logo} alt={item.employer} class="company-logo" />
-                {/if} -->
                 <h3 class="company">{item.employer}</h3>
                 {#if item.linkedinUrl}
                     <a href={item.linkedinUrl} target="_blank" rel="noreferrer" class="linkedin-link">
@@ -22,7 +20,7 @@
         </div>
         <h4 class="role">{item.role}</h4>
         <p class="description">{item.description}</p>
-    </div>
+    </Card>
 {/snippet}
 
 <div id="experience" class="ExperiencePage">
@@ -38,16 +36,6 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
-    }
-    .experience-card {
-        background-color: var(--background2);
-        padding: 1.5rem;
-        border-radius: 8px;
-        transition: all 0.3s ease-in-out;
-    }
-    .experience-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
     .card-header {
         display: flex;
@@ -65,12 +53,6 @@
         align-items: center;
         gap: 0.75rem;
     }
-    .company-logo {
-        width: 2.5rem;
-        height: 2.5rem;
-        object-fit: contain;
-        border-radius: 4px;
-    }
     .company {
         font-size: 1.5rem;
         font-weight: 700;
@@ -85,8 +67,8 @@
         transition: opacity 0.3s ease-in-out;
     }
     .linkedin-link :global(svg) {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.25rem !important;
+        height: 1.25rem !important;
     }
     .linkedin-link:hover {
         opacity: 1;

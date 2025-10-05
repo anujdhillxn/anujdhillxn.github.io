@@ -9,12 +9,19 @@
     import SkillsSection from "../components/SkillsSection.svelte";
     import Section from "../components/Section.svelte";
     import NavigationButton from "../components/NavigationButton.svelte";
+    // import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
 
     let apiCallStatus = $state(LOADING);
     let commentList: Comment[] = $state([]);
     let views = $state("");
     let currentSection = $state(0);
     let isAnimating = $state(false);
+    let animatedSections = $state(new Set());
+    let showNavigation = $state(false);
+
+    export function showNavigationButtons() {
+        showNavigation = true;
+    }
 
     const fetchData = async () => {
         try {
@@ -56,8 +63,6 @@
     };
 
     $effect(() => {
-        const animate = createIonosphere('ions', {repaint: 'var(--background1)'});
-        animate();
         fetchData();
 
         const content = document.querySelector('.content');
@@ -73,12 +78,12 @@
 <div class="content">
     {#key currentSection}
         {#if currentSection === 0}
-            <Section title="About">
-                <AboutSection />
+            <Section title="">
+                <AboutSection hasBeenVisited={animatedSections.has(0)} onAnimationComplete={() => animatedSections.add(0)} {showNavigationButtons} />
             </Section>
         {:else if currentSection === 1}
             <Section title="Skills">
-                <SkillsSection />
+                <SkillsSection hasBeenVisited={animatedSections.has(1)} onAnimationComplete={() => animatedSections.add(1)} />
             </Section>
         {:else if currentSection === 2}
             <Section title="Experience">
@@ -96,6 +101,7 @@
     {/key}
 </div>
 
+{#if showNavigation}
 <div class="navigation-arrows">
     <div class="buttons-row">
         <NavigationButton onclick={(e: MouseEvent) => { e.stopPropagation(); goUp(); }} disabled={currentSection === 0}>
@@ -104,9 +110,11 @@
         <NavigationButton onclick={(e: MouseEvent) => { e.stopPropagation(); goDown(); }} disabled={currentSection === 4}>
             ▼
         </NavigationButton>
+        <!-- <ThemeSwitcher /> -->
     </div>
     <p class="nav-hint">{currentSection + 1}/5</p>
 </div>
+{/if}
 
 <style>
     #ions {

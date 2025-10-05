@@ -4,35 +4,27 @@
     import { IconEmail } from "$lib/icons";
     import CommentSection from "./CommentSection.svelte";
     import { typeText } from "$lib/animation";
-    import { createSectionObserver } from "$lib/sectionObserver";
+    import Card from "./Card.svelte";
 
     const { apiCallStatus, commentList } = $props();
 
     $effect(() => {
-        const observer = createSectionObserver(
-            [...document.getElementsByClassName("ContactItem")],
-            () => {
-                const rightItemsContainer =
-                    document.getElementById("right-items");
-                const iconHolder = document.getElementById("icon-holder");
-                const iconsContainer = document.getElementById("icons");
-                if (!rightItemsContainer || !iconHolder || !iconsContainer) {
-                    throw new Error("Check element IDs");
-                }
-                typeText(
-                    rightItemsContainer,
-                    () => {
-                        iconHolder.classList.add("show");
-                    },
-                    20
-                );
-                iconsContainer.classList.add("show");
-            }
-        );
+        const rightItemsContainer = document.getElementById("right-items");
+        const iconHolder = document.getElementById("icon-holder");
+        const iconsContainer = document.getElementById("icons");
 
-        return () => {
-            observer.disconnect();
-        };
+        if (!rightItemsContainer || !iconHolder || !iconsContainer) {
+            return;
+        }
+
+        typeText(
+            rightItemsContainer,
+            () => {
+                iconHolder.classList.add("show");
+            },
+            20
+        );
+        iconsContainer.classList.add("show");
     });
 </script>
 
@@ -50,7 +42,7 @@
                 </a>
             {/each}
         </div>
-        <div class="ContactItem">
+        <Card class="ContactItem">
             <div id="icon-holder" class="contact-icon-holder">
                 <CustomRenderer htmlString={IconEmail} />
             </div>
@@ -58,7 +50,7 @@
                 <p>Email</p>
                 <p class="label">{info.email}</p>
             </div>
-        </div>
+        </Card>
     </div>
     <div class="separator-text">
         <h2>Or Write Anonymously</h2>
@@ -67,17 +59,17 @@
 </div>
 
 <style>
-    .ContactItem {
+    :global(.ContactItem) {
         width: 100%;
         display: flex;
-        background-color: var(--background2);
         align-items: center;
         justify-content: space-around;
-        .right-items {
-            .label {
-                font-size: 1rem;
-                color: var(--text2);
-            }
+        padding: 0.75rem 0 !important;
+    }
+    .right-items {
+        .label {
+            font-size: 1rem;
+            color: var(--text2);
         }
     }
 
@@ -105,6 +97,7 @@
         gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
         transform: scale(0);
         transform-origin: top;
         transition: all 0.5s ease-in-out;

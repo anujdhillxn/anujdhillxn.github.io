@@ -1,7 +1,6 @@
 <script lang="ts">
     import { typeText } from "$lib/animation";
     import { LOADED, API_URL } from "$lib/api";
-    import { createSectionObserver } from "$lib/sectionObserver";
 
     const { apiCallStatus, commentList } = $props();
     let content = $state("");
@@ -36,16 +35,7 @@
         if (apiCallStatus !== LOADED) return;
         const el = document.getElementById("comment-list");
         if (!el) return;
-        const observer = createSectionObserver(
-            [el],
-            (element) => {
-                typeText(element as HTMLElement, () => {});
-            },
-            0.2
-        );
-        return () => {
-            observer.disconnect();
-        };
+        typeText(el as HTMLElement, () => {});
     });
 </script>
 

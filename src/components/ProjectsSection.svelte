@@ -2,6 +2,8 @@
     import { info, type Project } from "$lib/info";
     import CustomRenderer from "./CustomRenderer.svelte";
     import NavigationButton from "./NavigationButton.svelte";
+    import { IconGithub, IconLink } from "$lib/icons";
+    import Card from "./Card.svelte";
 
     let currentPage = $state(0);
     let itemsPerPage = $state(3);
@@ -18,7 +20,7 @@
     };
 
     const updateItemsPerPage = () => {
-        const newItemsPerPage = window.innerWidth <= 900 ? 1 : 3;
+        const newItemsPerPage = 3;
         if (newItemsPerPage !== itemsPerPage) {
             itemsPerPage = newItemsPerPage;
             currentPage = 0;
@@ -36,50 +38,36 @@
 </script>
 
 {#snippet project(item: Project)}
-    <div class="project" id={item.id}>
-        <div class="image-data">
-            <img src={item.image} alt={item.title} />
-            <ul class="hover-items">
+    <Card>
+        <div id={item.id}>
+            <div class="header">
+                <h3>{item.title}</h3>
                 {#each item.links as link}
-                    <li>
-                        <a
-                            href={link.url}
-                            target="_blank"
-                            class="icon-holder"
-                            rel="noreferrer"
-                        >
-                            <CustomRenderer htmlString={link.icon} />
-                        </a>
-                    </li>
+                    <a href={link.url} target="_blank" rel="noreferrer" class="icon-link">
+                        <CustomRenderer htmlString={link.url.includes('github.com') ? IconGithub : IconLink} />
+                    </a>
                 {/each}
-            </ul>
+            </div>
+            <p>{item.description}</p>
         </div>
-        <h3 class="heading-text">{item.title}</h3>
-        <p>{item.description}</p>
-    </div>
+    </Card>
 {/snippet}
 
 <div id="projects" class="ProjectsPage">
     <div class="projects-container">
-        <div class="rotate-left">
-            <NavigationButton onclick={prevPage} disabled={currentPage === 0}>
-                ▲
-            </NavigationButton>
-        </div>
-        <div class="projects-data">
-            {#key currentPage}
-                <div class="projects">
-                    {#each info.projects.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) as item}
-                        {@render project(item)}
-                    {/each}
-                </div>
-            {/key}
-        </div>
-        <div class="rotate-right">
-            <NavigationButton onclick={nextPage} disabled={currentPage === totalPages - 1}>
-                ▲
-            </NavigationButton>
-        </div>
+        <NavigationButton onclick={prevPage} disabled={currentPage === 0}>
+            ◀
+        </NavigationButton>
+        {#key currentPage}
+            <div class="projects">
+                {#each info.projects.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) as item}
+                    {@render project(item)}
+                {/each}
+            </div>
+        {/key}
+        <NavigationButton onclick={nextPage} disabled={currentPage === totalPages - 1}>
+            ▶
+        </NavigationButton>
     </div>
 </div>
 
@@ -87,25 +75,20 @@
     .projects-container {
         display: flex;
         align-items: center;
-        gap: 2rem;
-    }
-    .rotate-left {
-        transform: rotate(-90deg);
-    }
-    .rotate-right {
-        transform: rotate(90deg);
-    }
-    .projects-data {
-        flex: 1;
+        gap: 1rem;
     }
     .projects {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        row-gap: 1rem;
-        column-gap: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
         animation: slideIn 0.5s ease-in-out;
+        justify-content: center;
+        flex: 1;
+    }
+    .projects :global(.card) {
+        width: 350px;
         @media screen and (max-width: 900px) {
-            grid-template-columns: repeat(1, 1fr);
+            width: 100%;
         }
     }
     @keyframes slideIn {
@@ -119,54 +102,32 @@
         }
     }
     .projects {
-        .project {
-            text-align: center;
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
             h3 {
                 margin: 0;
                 font-weight: 600;
-                color: var(--text2);
+                color: var(--text1);
             }
-            .image-data {
-                position: relative;
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 5%;
-                    left: 5%;
-                    height: 90%;
-                    width: 90%;
-                    background-color: var(--background2);
-                    transform-origin: center;
-                    transform: scale(0);
-                    transition: all 0.4s ease-in-out;
-                    opacity: 0.9;
-                }
-                &:hover::before {
-                    transform: scale(1);
-                }
-                img {
-                    width: 100%;
-                    height: 20rem;
-                    max-width: 20rem;
-                    object-fit: scale-down;
-                }
-                .hover-items {
-                    list-style: none;
-                    position: absolute;
-                    top: 70%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    padding: 1rem 2rem;
-                    opacity: 0;
-                }
+            .icon-link {
+                display: inline-flex;
+                opacity: 0.8;
+                transition: opacity 0.2s;
                 &:hover {
-                    .hover-items {
-                        transition: all 0.5s ease-in-out 0.2s;
-                        opacity: 1;
-                        top: 50%;
-                    }
+                    opacity: 1;
+                }
+                :global(svg.icon) {
+                    width: 1.5rem !important;
+                    height: 1.5rem !important;
                 }
             }
+        }
+        p {
+            margin: 0;
+            color: var(--text2);
         }
     }
 </style>

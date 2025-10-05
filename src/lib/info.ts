@@ -221,9 +221,9 @@ const links = [
 export const info = {
     about: `
         <p class="about-text">
-            Graduated from <span>IIT Delhi</span> in 2022, been building web apps since.
-            <br /> I work with <span>ReactJS</span> on the frontend and <span>Node.js/Spring</span> on the backend. Pretty much the full stack.
-            <br /> When I'm not coding, you'll find me gaming, solving algorithms, or jamming on guitar.
+            Been building software since <span>2021</span>.
+            <br /> I make things work on both sides - what you see and what makes it tick.
+            <br /> Scroll ahead to see what I've been up to.
         </p>
     `,
     cvLink: "https://drive.google.com/file/d/1w2E-dRdiixj7ovxEgP6CI_xsAJPE7TGe/view?usp=sharing",
