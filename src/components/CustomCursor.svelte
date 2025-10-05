@@ -2,8 +2,8 @@
 	import { onMount } from 'svelte';
 	import { cursorCharge } from '$lib/cursorCharge';
 
-	let cursorX = $state(0);
-	let cursorY = $state(0);
+	let cursorX = $state(-1000);
+	let cursorY = $state(-1000);
 	let isHovering = $state(false);
 	let charge = $state(-1); // -1 (negative/blue), 0 (neutral), 1 (positive/red)
 
