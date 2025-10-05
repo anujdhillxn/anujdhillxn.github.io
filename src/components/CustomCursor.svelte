@@ -14,9 +14,11 @@
 
 	onMount(() => {
 		const handleMouseMove = (e: MouseEvent) => {
-			if (!isVisible) isVisible = true;
 			cursorX = e.clientX;
 			cursorY = e.clientY;
+			if (e.clientX !== 0 || e.clientY !== 0) {
+				isVisible = true;
+			}
 		};
 
 		const handleMouseOver = (e: MouseEvent) => {
