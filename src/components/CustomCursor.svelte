@@ -2,9 +2,10 @@
 	import { onMount } from 'svelte';
 	import { cursorCharge } from '$lib/cursorCharge';
 
-	let cursorX = $state(-1000);
-	let cursorY = $state(-1000);
+	let cursorX = $state(0);
+	let cursorY = $state(0);
 	let isHovering = $state(false);
+	let isVisible = $state(false);
 	let charge = $state(-1); // -1 (negative/blue), 0 (neutral), 1 (positive/red)
 
 	$effect(() => {
@@ -13,6 +14,7 @@
 
 	onMount(() => {
 		const handleMouseMove = (e: MouseEvent) => {
+			if (!isVisible) isVisible = true;
 			cursorX = e.clientX;
 			cursorY = e.clientY;
 		};
@@ -50,22 +52,24 @@
 	});
 </script>
 
-<div
-	class="cursor-dot"
-	style="left: {cursorX}px; top: {cursorY}px;"
-	class:hovering={isHovering}
-	class:neutral={charge === 0}
-	class:positive={charge === 1}
-	class:negative={charge === -1}
-></div>
-<div
-	class="cursor-outline"
-	style="left: {cursorX}px; top: {cursorY}px;"
-	class:hovering={isHovering}
-	class:neutral={charge === 0}
-	class:positive={charge === 1}
-	class:negative={charge === -1}
-></div>
+{#if isVisible}
+	<div
+		class="cursor-dot"
+		style="left: {cursorX}px; top: {cursorY}px;"
+		class:hovering={isHovering}
+		class:neutral={charge === 0}
+		class:positive={charge === 1}
+		class:negative={charge === -1}
+	></div>
+	<div
+		class="cursor-outline"
+		style="left: {cursorX}px; top: {cursorY}px;"
+		class:hovering={isHovering}
+		class:neutral={charge === 0}
+		class:positive={charge === 1}
+		class:negative={charge === -1}
+	></div>
+{/if}
 
 <style>
 	.cursor-dot,
@@ -92,11 +96,11 @@
 
 	/* Neutral state */
 	.cursor-dot.neutral {
-		background-color: var(--text1);
+		background-color: var(--text2);
 	}
 
 	.cursor-outline.neutral {
-		border-color: var(--text1);
+		border-color: var(--text2);
 	}
 
 	/* Positive state */
