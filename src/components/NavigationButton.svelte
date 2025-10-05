@@ -22,11 +22,11 @@
         transition: all 0.3s ease-in-out;
     }
     .nav-button:hover:not(:disabled) {
-        background-color: var(--primary2);
+        background-color: var(--negative2);
         transform: scale(1.1);
     }
     .nav-button:focus-visible {
-        outline: 2px solid var(--primary2);
+        outline: 2px solid var(--negative2);
         outline-offset: 2px;
     }
     .nav-button:disabled {

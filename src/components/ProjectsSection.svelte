@@ -54,17 +54,18 @@
 {/snippet}
 
 <div id="projects" class="ProjectsPage">
-    <div class="projects-container">
+    {#key currentPage}
+        <div class="projects">
+            {#each info.projects.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) as item}
+                {@render project(item)}
+            {/each}
+        </div>
+    {/key}
+    <div class="nav-controls">
         <NavigationButton onclick={prevPage} disabled={currentPage === 0}>
             ◀
         </NavigationButton>
-        {#key currentPage}
-            <div class="projects">
-                {#each info.projects.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) as item}
-                    {@render project(item)}
-                {/each}
-            </div>
-        {/key}
+        <span class="page-indicator">{currentPage + 1} / {totalPages}</span>
         <NavigationButton onclick={nextPage} disabled={currentPage === totalPages - 1}>
             ▶
         </NavigationButton>
@@ -72,10 +73,10 @@
 </div>
 
 <style>
-    .projects-container {
+    .ProjectsPage {
         display: flex;
-        align-items: center;
-        gap: 1rem;
+        flex-direction: column;
+        gap: 2rem;
     }
 
     .projects {
@@ -84,7 +85,20 @@
         gap: 1rem;
         animation: slideIn 0.5s ease-in-out;
         justify-content: center;
-        flex: 1;
+    }
+
+    .nav-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .page-indicator {
+        font-size: 0.875rem;
+        color: var(--text3);
+        min-width: 3rem;
+        text-align: center;
     }
 
     .projects :global(.card) {

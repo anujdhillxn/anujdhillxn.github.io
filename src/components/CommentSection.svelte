@@ -110,7 +110,7 @@
 
     .write-area .submit-button .btn {
         padding: 1rem 2rem;
-        background-color: var(--primary2);
+        background-color: var(--negative2);
         outline: none;
         border: none;
         font-family: inherit;
@@ -130,7 +130,7 @@
         height: 0.3rem;
         left: 0;
         bottom: 0;
-        background-color: var(--primary2);
+        background-color: var(--negative2);
         transition: all 0.4s ease-in-out;
     }
 
@@ -144,7 +144,7 @@
     }
 
     .write-area .submit-button .btn:focus-visible {
-        outline: 2px solid var(--primary1);
+        outline: 2px solid var(--negative1);
         outline-offset: 4px;
     }
 

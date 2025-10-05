@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { createIonosphere } from "ions-ts";
     import { API_URL, LOADED, LOADING, type Comment } from "$lib/api";
-    import { info } from "$lib/info";
     import AboutSection from "../components/AboutSection.svelte";
     import ContactSection from "../components/ContactSection.svelte";
     import ExperienceSection from "../components/ExperienceSection.svelte";
@@ -9,16 +7,17 @@
     import SkillsSection from "../components/SkillsSection.svelte";
     import Section from "../components/Section.svelte";
     import Navbar from "../components/Navbar.svelte";
+    import LandingPageSection from "../components/LandingPageSection.svelte";
+    import CustomCursor from "../components/CustomCursor.svelte";
     // import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
 
     let apiCallStatus = $state(LOADING);
     let commentList: Comment[] = $state([]);
-    let views = $state("");
     let currentSection = $state(0);
     let isNavigating = $state(false);
     let showNavigation = $state(false);
 
-    export function showNavigationButtons() {
+    function showNavigationButtons() {
         showNavigation = true;
     }
 
@@ -28,7 +27,6 @@
             const resp = await fetch(API_URL);
             const json = await resp.json();
             commentList = json.commentList;
-            views = json.views;
             apiCallStatus = LOADED;
         } catch (e) {
             // @ts-ignore
@@ -37,7 +35,7 @@
     };
 
     const goDown = () => {
-        if (isNavigating || currentSection >= 4) return;
+        if (isNavigating || currentSection >= 5) return;
         isNavigating = true;
         currentSection++;
         setTimeout(() => { isNavigating = false; }, 500);
@@ -137,31 +135,36 @@
     })
 </script>
 
+<CustomCursor />
 <canvas id='ions'></canvas>
-<div class="navbar-container">
+<!-- <div class="navbar-container" style:opacity={showNavigation ? 1 : 0} style:transition="opacity 0.5s ease-out">
     {#if showNavigation}
         <Navbar {currentSection} {goUp} {goDown} />
     {/if}
-</div>
+</div> -->
 <div class="content">
     {#key currentSection}
         {#if currentSection === 0}
-            <Section title="About">
-                <AboutSection {showNavigationButtons} />
+            <Section title="">
+                <LandingPageSection {showNavigationButtons} />
             </Section>
         {:else if currentSection === 1}
+            <Section title="About">
+                <AboutSection />
+            </Section>
+        {:else if currentSection === 2}
             <Section title="Skills">
                 <SkillsSection />
             </Section>
-        {:else if currentSection === 2}
+        {:else if currentSection === 3}
             <Section title="Experience">
                 <ExperienceSection />
             </Section>
-        {:else if currentSection === 3}
+        {:else if currentSection === 4}
             <Section title="Projects">
                 <ProjectsSection />
             </Section>
-        {:else if currentSection === 4}
+        {:else if currentSection === 5}
             <Section title="Contact">
                 <ContactSection {commentList} {apiCallStatus} />
             </Section>
@@ -193,7 +196,7 @@
     }
 
     .content {
-        height: 90vh;
+        height: 100vh;
         overflow: hidden;
     }
     :global(p, li) {

@@ -5,13 +5,12 @@
 </script>
 
 <div class="navbar">
-    <h3 class="name">Anuj Dhillon</h3>
     <div class="nav-controls">
         <NavigationButton onclick={(e: MouseEvent) => { e.stopPropagation(); goUp(); }} disabled={currentSection === 0}>
             ▲
         </NavigationButton>
-        <p class="nav-hint">{currentSection + 1}/5</p>
-        <NavigationButton onclick={(e: MouseEvent) => { e.stopPropagation(); goDown(); }} disabled={currentSection === 4}>
+        <p class="nav-hint">{currentSection + 1}/6</p>
+        <NavigationButton onclick={(e: MouseEvent) => { e.stopPropagation(); goDown(); }} disabled={currentSection === 5}>
             ▼
         </NavigationButton>
     </div>

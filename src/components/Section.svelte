@@ -13,21 +13,16 @@
 <style>
     .snap-section {
         height: 100%;
-        padding: 15vh 20% 0 20%;
+        padding: 0 20% 0 20%;
         display: flex;
+        justify-content: center;
         flex-direction: column;
         animation: slideIn 0.5s ease-in-out;
     }
 
-    @media screen and (max-width: 900px) {
-        .snap-section {
-            padding-top: 10vh;
-        }
-    }
-
     @media screen and (max-width: 600px) {
         .snap-section {
-            padding: 5vh 1rem 0 1rem;
+            padding: 0 1rem 0 1rem;
         }
     }
 

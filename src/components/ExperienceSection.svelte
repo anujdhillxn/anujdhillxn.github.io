@@ -62,7 +62,7 @@
     .company {
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--primary1);
+        color: var(--negative1);
         margin: 0;
     }
 

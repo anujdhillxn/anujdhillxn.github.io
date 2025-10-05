@@ -16,7 +16,7 @@
     }
     .card:hover {
         transform: translateY(-4px) translateX(2px) rotate(0.5deg);
-        box-shadow: 0 8px 16px color-mix(in srgb, var(--primary2) 20%, transparent);
-        border-color: color-mix(in srgb, var(--primary2) 30%, transparent);
+        box-shadow: 0 8px 16px color-mix(in srgb, var(--negative2) 20%, transparent);
+        border-color: color-mix(in srgb, var(--negative2) 30%, transparent);
     }
 </style>

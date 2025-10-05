@@ -28,7 +28,7 @@
         bottom: 0;
         position: absolute;
         left: 0;
-        background-color: var(--primary2);
+        background-color: var(--negative2);
         width: 3rem;
         height: 0.4rem;
         border-radius: 50px;
@@ -39,7 +39,7 @@
         bottom: 0;
         position: absolute;
         left: 0;
-        background-color: var(--primary1);
+        background-color: var(--negative1);
         width: 6rem;
         height: 0.4rem;
         border-radius: 50px;
