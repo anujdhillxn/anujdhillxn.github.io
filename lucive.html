@@ -5,39 +5,43 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
 		<link href="./internal/immutable/assets/3.CpKx2PD_.css" rel="stylesheet">
-		<link rel="modulepreload" href="./internal/immutable/entry/start.CujEBdqb.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/D21Uh1Te.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/CMK13ZSz.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/Cf48yndM.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/_H1yOjej.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/BSognxwl.js">
-		<link rel="modulepreload" href="./internal/immutable/entry/app.DLF-6ffY.js">
+		<link rel="modulepreload" href="./internal/immutable/entry/start.B_iTPcqA.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/B4CzNjzm.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/BMjiolb2.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/BpuZauE4.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/CIieyPgM.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/B-Ojl4vV.js">
+		<link rel="modulepreload" href="./internal/immutable/entry/app.C9xx53EO.js">
 		<link rel="modulepreload" href="./internal/immutable/chunks/Bzak7iHL.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/ES3nBUxy.js">
-		<link rel="modulepreload" href="./internal/immutable/nodes/0.r3ETjNrx.js">
-		<link rel="modulepreload" href="./internal/immutable/nodes/3.BvvBzWah.js">
-		<link rel="modulepreload" href="./internal/immutable/chunks/Ceh1t0vI.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/Cqq7xV3q.js">
+		<link rel="modulepreload" href="./internal/immutable/nodes/0.DdCn9kMK.js">
+		<link rel="modulepreload" href="./internal/immutable/nodes/3.BzWdArKj.js">
+		<link rel="modulepreload" href="./internal/immutable/chunks/DfAlkPb0.js">
 		<style>
 			@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital@1&display=swap");
 			@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,500;1,400&family=Sora:wght@200;300;500&display=swap");
 
             :root {
-                --text1: #ffffff; /* Text over Primary1 and Primary2 */
-                --text2: #e0e0e0; /* Text over Background2 */
-                --text3: #c0c0c0; /* Text over Background2 */
-                --background1: #1e1e1e; /* Main background */
-                --background2: #2e2e2e; /* Used for cards */
-                --primary1: #9370db; /* Secondary primary color */
-                --primary2: #8a2be2; /* Primary color */
-                --accent1: #ba55d3; /* Accent color */
-                --accent2: #dda0dd; /* Secondary accent color */
-                --danger: #ff7f7f; /* Danger color */
+                color-scheme: light dark;
+
+                /* Dark theme colors (default) */
+                --text1: light-dark(hsl(0, 0%, 20%), hsl(0, 0%, 100%)); /* Text primary */
+                --text2: light-dark(hsl(0, 0%, 30%), hsl(0, 0%, 88%)); /* Text secondary */
+                --text3: light-dark(hsl(0, 0%, 45%), hsl(0, 0%, 75%)); /* Text tertiary */
+                --background1: light-dark(hsl(0, 0%, 98%), hsl(0, 0%, 12%)); /* Main background */
+                --background2: light-dark(hsl(0, 0%, 93%), hsl(0, 0%, 18%)); /* Cards background */
+                --primary1: light-dark(hsl(260, 60%, 55%), hsl(260, 60%, 65%)); /* Primary accent 1 */
+                --primary2: light-dark(hsl(271, 76%, 45%), hsl(271, 76%, 53%)); /* Primary accent 2 */
+                --accent1: light-dark(hsl(288, 59%, 50%), hsl(288, 59%, 58%)); /* Accent 1 */
+                --accent2: light-dark(hsl(300, 47%, 60%), hsl(300, 47%, 68%)); /* Accent 2 */
+                --danger: light-dark(hsl(0, 100%, 65%), hsl(0, 100%, 75%)); /* Danger color */
             }
 			body {
 				margin: 0;
 				font-family: "Sora", sans-serif;
 				font-size: 1.1rem;
 				color: var(--text1);
+				background-color: var(--background1);
 				height: 100vh;
 				overflow: hidden;
 				span {
@@ -62,15 +66,15 @@
 			
 			<script>
 				{
-					__sveltekit_1w452hh = {
+					__sveltekit_ee2fip = {
 						base: new URL(".", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("./internal/immutable/entry/start.CujEBdqb.js"),
-						import("./internal/immutable/entry/app.DLF-6ffY.js")
+						import("./internal/immutable/entry/start.B_iTPcqA.js"),
+						import("./internal/immutable/entry/app.C9xx53EO.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 3],
