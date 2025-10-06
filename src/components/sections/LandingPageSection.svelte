@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { createIonosphere } from "ions-ts";
 	import { visitedSections, markSectionVisited } from "$lib/visitedSections";
-	import RepelText from "./RepelText.svelte";
-	import AlternatingText from "./AlternatingText.svelte";
+	import LetterText from "../ui/LetterText.svelte";
 
 	const { showNavigationButtons } = $props();
 	const SECTION_INDEX = 0;
@@ -11,22 +10,7 @@
 	let line2Visible = $state(false);
 	let line3Visible = $state(false);
 
-	const magneticTexts = [
-		'Explore the magnetic theme • Letters respond to your cursor',
-		'Right-click to switch cursor charge',
-		'Scroll to explore my work'
-	];
-
 	$effect(() => {
-		// Initialize ionosphere
-		setTimeout(() => {
-			const bgColor = getComputedStyle(document.body).backgroundColor;
-			const ionosphere = createIonosphere("ions", {
-				repaint: bgColor,
-				trailMaxLength: 0,
-			});
-			ionosphere.start();
-		}, 100);
 
 		// Check if section has been visited
 		if ($visitedSections.has(SECTION_INDEX)) {
@@ -49,7 +33,7 @@
 						showNavigationButtons();
 						markSectionVisited(SECTION_INDEX);
 					}, 600);
-				}, 400);
+				}, 1200);
 			}, 400);
 		}, 500);
 	});
@@ -59,13 +43,17 @@
 	<div>
 		<p class:visible={line1Visible}>Hi, I am</p>
 		<h1 class:visible={line2Visible}>
-			<RepelText text="Anuj" /> <RepelText text="Dhillon" />
+			<LetterText text="Anuj" animate={line2Visible} charge={-1} />
+			<span class="space"> </span>
+			<LetterText text="Dhillon" animate={line2Visible} charge={-1} />
 		</h1>
 	</div>
 	<div class="info">
-		<p class:visible={line3Visible}>
-			<AlternatingText texts={magneticTexts} />
-		</p>
+		{#if line3Visible}
+			<p>
+				Scroll to explore my work
+			</p>
+		{/if}
 	</div>
 </div>
 
@@ -78,8 +66,7 @@
 		justify-content: space-around;
 	}
 
-	.landing > div > p,
-	.landing > .info > p {
+	.landing > div > p {
 		font-size: 1.2rem;
 		color: var(--text2);
 		margin: 0;
@@ -98,10 +85,28 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		min-height: 60px;
 	}
 
-	.landing > div > p.visible,
-	.landing > .info > p.visible {
+	.info > p {
+		font-size: 1.2rem;
+		color: var(--text2);
+		margin: 0;
+		animation: fadeInUp 0.6s ease forwards;
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.landing > div > p.visible {
 		opacity: 1;
 		transform: translateY(0);
 	}
@@ -119,5 +124,16 @@
 
 	h1.visible {
 		opacity: 1;
+	}
+
+	@keyframes letterFadeIn {
+		to {
+			opacity: 1;
+		}
+	}
+
+	h1 .space {
+		display: inline-block;
+		width: 0.3em;
 	}
 </style>

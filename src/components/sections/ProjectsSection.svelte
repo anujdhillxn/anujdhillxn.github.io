@@ -1,9 +1,9 @@
 <script lang="ts">
     import { info, type Project } from "$lib/info";
-    import CustomRenderer from "./CustomRenderer.svelte";
-    import NavigationButton from "./NavigationButton.svelte";
+    import CustomRenderer from "../CustomRenderer.svelte";
+    import NavigationButton from "../ui/NavigationButton.svelte";
     import { IconGithub, IconLink } from "$lib/icons";
-    import Card from "./Card.svelte";
+    import Card from "../ui/Card.svelte";
 
     let currentPage = $state(0);
     let itemsPerPage = $state(3);

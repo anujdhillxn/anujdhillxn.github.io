@@ -1,8 +1,8 @@
 <script lang="ts">
     import { info, type Experience } from "$lib/info";
-    import CustomRenderer from "./CustomRenderer.svelte";
+    import CustomRenderer from "../CustomRenderer.svelte";
     import { IconLinkedin } from "$lib/icons";
-    import Card from "./Card.svelte";
+    import Card from "../ui/Card.svelte";
 </script>
 
 {#snippet experience(item: Experience)}

@@ -2,9 +2,14 @@
 	const { texts, interval = 3000 } = $props<{ texts: string[], interval?: number }>();
 
 	let currentIndex = $state(0);
-	let isVisible = $state(true);
+	let isVisible = $state(false);
 
 	$effect(() => {
+		// Fade in the first text
+		const initialTimeout = setTimeout(() => {
+			isVisible = true;
+		}, 100);
+
 		const timer = setInterval(() => {
 			isVisible = false;
 			setTimeout(() => {
@@ -13,7 +18,10 @@
 			}, 300);
 		}, interval);
 
-		return () => clearInterval(timer);
+		return () => {
+			clearTimeout(initialTimeout);
+			clearInterval(timer);
+		};
 	});
 </script>
 

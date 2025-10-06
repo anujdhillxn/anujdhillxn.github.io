@@ -1,10 +1,17 @@
 <script lang="ts">
     import { info } from "$lib/info";
-    import Card from "./Card.svelte";
+    import Card from "../ui/Card.svelte";
+    import ChargeWrapper from "../cursor/ChargeWrapper.svelte";
     import { visitedSections, markSectionVisited } from "$lib/visitedSections";
 
     const SECTION_INDEX = 1;
     const allSkills = info.allSkills;
+
+    // Assign charges to skills: cycle through positive, negative, neutral
+    const skillsWithCharge = allSkills.map((skill, index) => ({
+        name: skill,
+        charge: [1, -1, 0][index % 3]
+    }));
 
     $effect(() => {
         const skillCards = document.querySelectorAll('.skill-card');
@@ -29,10 +36,12 @@
 
 <div id="skills" class="SkillsPage">
     <div class="skills">
-        {#each allSkills as skill}
-            <Card class="skill-card">
-                {skill}
-            </Card>
+        {#each skillsWithCharge as { name, charge }}
+            <ChargeWrapper {charge}>
+                <Card class="skill-card">
+                    {name}
+                </Card>
+            </ChargeWrapper>
         {/each}
     </div>
 </div>
@@ -64,5 +73,22 @@
     :global(.skill-card.show) {
         opacity: 1;
         transform: scale(1);
+    }
+
+    /* Charge styling */
+    :global(.charge-wrapper[data-charge="1"]) {
+        position: relative;
+    }
+
+    :global(.charge-wrapper[data-charge="-1"]) {
+        position: relative;
+    }
+
+    :global(.charge-wrapper[data-charge="1"] .card) {
+        border-color: color-mix(in srgb, var(--positive2) 40%, transparent) !important;
+    }
+
+    :global(.charge-wrapper[data-charge="-1"] .card) {
+        border-color: color-mix(in srgb, var(--negative2) 40%, transparent) !important;
     }
 </style>

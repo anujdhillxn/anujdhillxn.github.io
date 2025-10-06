@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Button from "./Button.svelte";
+    import Button from "../ui/Button.svelte";
     import { info } from "$lib/info";
 </script>
 
@@ -47,7 +47,7 @@
     .about-right h3 {
         margin: 0 0 0.5rem 0;
         font-weight: 600;
-        color: var(--text1);
+        color: var(--text2);
     }
 
     .about-right {
@@ -66,7 +66,7 @@
     .about-text,
     .about-right p {
         margin: 0;
-        color: var(--text2);
+        color: var(--text3);
         font-size: 1.125rem;
         line-height: 1.8;
     }

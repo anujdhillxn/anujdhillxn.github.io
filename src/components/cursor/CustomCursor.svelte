@@ -4,13 +4,7 @@
 
 	let cursorX = $state(0);
 	let cursorY = $state(0);
-	let isHovering = $state(false);
 	let isVisible = $state(false);
-	let charge = $state(-1); // -1 (negative/blue), 0 (neutral), 1 (positive/red)
-
-	$effect(() => {
-		cursorCharge.set(charge);
-	});
 
 	onMount(() => {
 		const handleMouseMove = (e: MouseEvent) => {
@@ -21,34 +15,16 @@
 			}
 		};
 
-		const handleMouseOver = (e: MouseEvent) => {
-			const target = e.target as HTMLElement;
-			if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
-				isHovering = true;
-			}
-		};
-
-		const handleMouseOut = (e: MouseEvent) => {
-			const target = e.target as HTMLElement;
-			if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
-				isHovering = false;
-			}
-		};
-
 		const handleContextMenu = (e: MouseEvent) => {
 			e.preventDefault();
-			charge = charge === 1 ? -1 : charge + 1;
+			cursorCharge.update(current => current === 1 ? -1 : current + 1);
 		};
 
 		window.addEventListener('mousemove', handleMouseMove);
-		document.addEventListener('mouseover', handleMouseOver);
-		document.addEventListener('mouseout', handleMouseOut);
 		document.addEventListener('contextmenu', handleContextMenu);
 
 		return () => {
 			window.removeEventListener('mousemove', handleMouseMove);
-			document.removeEventListener('mouseover', handleMouseOver);
-			document.removeEventListener('mouseout', handleMouseOut);
 			document.removeEventListener('contextmenu', handleContextMenu);
 		};
 	});
@@ -58,18 +34,16 @@
 	<div
 		class="cursor-dot"
 		style="left: {cursorX}px; top: {cursorY}px;"
-		class:hovering={isHovering}
-		class:neutral={charge === 0}
-		class:positive={charge === 1}
-		class:negative={charge === -1}
+		class:neutral={$cursorCharge === 0}
+		class:positive={$cursorCharge === 1}
+		class:negative={$cursorCharge === -1}
 	></div>
 	<div
 		class="cursor-outline"
 		style="left: {cursorX}px; top: {cursorY}px;"
-		class:hovering={isHovering}
-		class:neutral={charge === 0}
-		class:positive={charge === 1}
-		class:negative={charge === -1}
+		class:neutral={$cursorCharge === 0}
+		class:positive={$cursorCharge === 1}
+		class:negative={$cursorCharge === -1}
 	></div>
 {/if}
 
@@ -123,14 +97,4 @@
 		border-color: var(--negative2);
 	}
 
-	/* Hovering states */
-	.cursor-dot.hovering {
-		width: 32px;
-		height: 32px;
-	}
-
-	.cursor-outline.hovering {
-		width: 48px;
-		height: 48px;
-	}
 </style>

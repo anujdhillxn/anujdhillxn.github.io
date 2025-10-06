@@ -1,5 +1,5 @@
 <script lang="ts">
-    import NavigationButton from "./NavigationButton.svelte";
+    import NavigationButton from "./ui/NavigationButton.svelte";
 
     let { currentSection, goUp, goDown } = $props();
 </script>

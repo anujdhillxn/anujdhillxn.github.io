@@ -1,10 +1,10 @@
 <script lang="ts">
     import { info } from "$lib/info";
-    import CustomRenderer from "./CustomRenderer.svelte";
+    import CustomRenderer from "../CustomRenderer.svelte";
     import { IconEmail } from "$lib/icons";
-    import CommentSection from "./CommentSection.svelte";
+    import CommentSection from "../CommentSection.svelte";
     import { typeText } from "$lib/animation";
-    import Card from "./Card.svelte";
+    import Card from "../ui/Card.svelte";
     import { visitedSections, markSectionVisited } from "$lib/visitedSections";
 
     const SECTION_INDEX = 4;

@@ -1,14 +1,15 @@
 <script lang="ts">
     import { API_URL, LOADED, LOADING, type Comment } from "$lib/api";
-    import AboutSection from "../components/AboutSection.svelte";
-    import ContactSection from "../components/ContactSection.svelte";
-    import ExperienceSection from "../components/ExperienceSection.svelte";
-    import ProjectsSection from "../components/ProjectsSection.svelte";
-    import SkillsSection from "../components/SkillsSection.svelte";
-    import Section from "../components/Section.svelte";
+    import AboutSection from "../components/sections/AboutSection.svelte";
+    import ContactSection from "../components/sections/ContactSection.svelte";
+    import ExperienceSection from "../components/sections/ExperienceSection.svelte";
+    import ProjectsSection from "../components/sections/ProjectsSection.svelte";
+    import SkillsSection from "../components/sections/SkillsSection.svelte";
+    import Section from "../components/ui/Section.svelte";
     import Navbar from "../components/Navbar.svelte";
-    import LandingPageSection from "../components/LandingPageSection.svelte";
-    import CustomCursor from "../components/CustomCursor.svelte";
+    import LandingPageSection from "../components/sections/LandingPageSection.svelte";
+    import CustomCursor from "../components/cursor/CustomCursor.svelte";
+    import CursorTooltip from "../components/cursor/CursorTooltip.svelte";
     // import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
 
     let apiCallStatus = $state(LOADING);
@@ -136,6 +137,7 @@
 </script>
 
 <CustomCursor />
+<CursorTooltip />
 <canvas id='ions'></canvas>
 <!-- <div class="navbar-container" style:opacity={showNavigation ? 1 : 0} style:transition="opacity 0.5s ease-out">
     {#if showNavigation}
