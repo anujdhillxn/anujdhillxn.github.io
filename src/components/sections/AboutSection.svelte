@@ -1,5 +1,6 @@
 <script lang="ts">
     import Button from "../ui/Button.svelte";
+    import ChargeWrapper from "../cursor/ChargeWrapper.svelte";
     import { info } from "$lib/info";
 </script>
 
@@ -17,16 +18,32 @@
         <div class="about-right">
             <h3>Know me better</h3>
             <p>
-                <a href="https://www.imdb.com/title/tt2560140/" target="_blank" rel="noreferrer">Watch this</a>
-                <br /><a href="https://www.google.com/maps/place/cult+indiranagar+6th+main/data=!4m2!3m1!1s0x3bae1792bc4dcc21:0x4a05ef69eabd2b18?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noreferrer">Come here</a>
-                <br /><a href="https://open.spotify.com/blend/taste-match/fd74444c446e314f?si=3IfrrGXtQeqGSwvBBKIfWg&fallback=getapp&blendDecoration=5f9c38d2" target="_blank" rel="noreferrer">Blend?</a>
-                <br /><a href="https://github.com/anujdhillxn/lucive" target="_blank" rel="noreferrer">Contribute</a>
-                <br /><a href="https://store.steampowered.com/app/291550/Brawlhalla/" target="_blank" rel="noreferrer">2s?</a>
+                <ChargeWrapper charge={-1} enableRotation={true}>
+                    <a href="https://www.imdb.com/title/tt2560140/" target="_blank" rel="noreferrer">Watch this</a>
+                </ChargeWrapper>
+                <br />
+                <ChargeWrapper charge={-1} enableRotation={true}>
+                    <a href="https://www.google.com/maps/place/cult+indiranagar+6th+main/data=!4m2!3m1!1s0x3bae1792bc4dcc21:0x4a05ef69eabd2b18?sa=X&ved=1t:242&ictx=111" target="_blank" rel="noreferrer">Come here</a>
+                </ChargeWrapper>
+                <br />
+                <ChargeWrapper charge={-1} enableRotation={true}>
+                    <a href="https://open.spotify.com/blend/taste-match/fd74444c446e314f?si=3IfrrGXtQeqGSwvBBKIfWg&fallback=getapp&blendDecoration=5f9c38d2" target="_blank" rel="noreferrer">Blend?</a>
+                </ChargeWrapper>
+                <br />
+                <ChargeWrapper charge={-1} enableRotation={true}>
+                    <a href="https://github.com/anujdhillxn/lucive" target="_blank" rel="noreferrer">Contribute</a>
+                </ChargeWrapper>
+                <br />
+                <ChargeWrapper charge={-1} enableRotation={true}>
+                    <a href="https://store.steampowered.com/app/291550/Brawlhalla/" target="_blank" rel="noreferrer">2s?</a>
+                </ChargeWrapper>
             </p>
         </div>
     </div>
     <div class="cv-button-container">
-        <Button href={info.cvLink}>Download CV</Button>
+        <ChargeWrapper charge={-1}>
+            <Button href={info.cvLink}>Download CV</Button>
+        </ChargeWrapper>
     </div>
 </div>
 

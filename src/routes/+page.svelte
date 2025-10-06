@@ -138,7 +138,6 @@
 
 <CustomCursor />
 <CursorTooltip />
-<canvas id='ions'></canvas>
 <!-- <div class="navbar-container" style:opacity={showNavigation ? 1 : 0} style:transition="opacity 0.5s ease-out">
     {#if showNavigation}
         <Navbar {currentSection} {goUp} {goDown} />
@@ -175,14 +174,6 @@
 </div>
 
 <style>
-    #ions {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
     .navbar-container {
         height: 10vh;
         display: flex;

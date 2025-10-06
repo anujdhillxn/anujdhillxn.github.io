@@ -1,6 +1,8 @@
 <script lang="ts">
     import { typeText } from "$lib/animation";
     import { LOADED, API_URL } from "$lib/api";
+    import ChargeWrapper from "./cursor/ChargeWrapper.svelte";
+    import Button from "./ui/Button.svelte";
 
     const { apiCallStatus, commentList } = $props();
     let content = $state("");
@@ -58,7 +60,9 @@
             ></textarea>
         </div>
         <div class="submit-button">
-            <button onclick={postComment} class="btn"> Send </button>
+            <ChargeWrapper charge={-1}>
+                <Button onclick={postComment}>Send</Button>
+            </ChargeWrapper>
         </div>
     </div>
     {#if apiCallStatus === LOADED}
@@ -106,46 +110,6 @@
 
     .write-area .submit-button {
         text-align: center;
-    }
-
-    .write-area .submit-button .btn {
-        padding: 1rem 2rem;
-        background-color: var(--negative2);
-        outline: none;
-        border: none;
-        font-family: inherit;
-        font-size: inherit;
-        color: var(--text1);
-        text-transform: uppercase;
-        cursor: pointer;
-        margin-top: 1rem;
-        position: relative;
-        transition: all 0.8s ease-in-out;
-    }
-
-    .write-area .submit-button .btn::after {
-        position: absolute;
-        content: "";
-        width: 0;
-        height: 0.3rem;
-        left: 0;
-        bottom: 0;
-        background-color: var(--negative2);
-        transition: all 0.4s ease-in-out;
-    }
-
-    .write-area .submit-button .btn:hover::after {
-        width: 100%;
-    }
-
-    .write-area .submit-button .btn:hover {
-        background-color: var(--background2);
-        color: var(--text2);
-    }
-
-    .write-area .submit-button .btn:focus-visible {
-        outline: 2px solid var(--negative1);
-        outline-offset: 4px;
     }
 
     @media screen and (max-width: 1270px) {

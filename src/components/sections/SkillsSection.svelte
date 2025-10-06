@@ -7,10 +7,10 @@
     const SECTION_INDEX = 1;
     const allSkills = info.allSkills;
 
-    // Assign charges to skills: cycle through positive, negative, neutral
-    const skillsWithCharge = allSkills.map((skill, index) => ({
+    // Assign random charges to skills
+    const skillsWithCharge = allSkills.map((skill) => ({
         name: skill,
-        charge: [1, -1, 0][index % 3]
+        charge: [1, -1, 0][Math.floor(Math.random() * 3)]
     }));
 
     $effect(() => {

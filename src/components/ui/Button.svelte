@@ -1,10 +1,20 @@
 <script lang="ts">
-    const { href, children } = $props();
+    const { href, onclick, children } = $props<{
+        href?: string;
+        onclick?: () => void;
+        children: any;
+    }>();
 </script>
 
-<button class="btn">
-    <a {href}>{@render children()}</a>
-</button>
+{#if href}
+    <button class="btn">
+        <a {href}>{@render children()}</a>
+    </button>
+{:else}
+    <button class="btn" {onclick}>
+        {@render children()}
+    </button>
+{/if}
 
 <style>
     .btn {

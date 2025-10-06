@@ -4,8 +4,11 @@
 	let cursorX = $state(0);
 	let cursorY = $state(0);
 	let isVisible = $state(false);
+	let isTouchDevice = $state(false);
 
 	onMount(() => {
+		// Detect if device supports touch
+		isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 		setTimeout(() => {
 			isVisible = true;
@@ -35,9 +38,9 @@
 		class="cursor-tooltip"
 		style="left: {cursorX}px; top: {cursorY}px;"
 	>
-		<p>Right-click to switch charge</p>
+		<p>{isTouchDevice ? 'Double-tap to switch charge' : 'Right-click to switch charge'}</p>
 		<p class="charge-info">
-			Opposites attract
+			Move close to colored elements, opposites attract
 		</p>
 	</div>
 {/if}

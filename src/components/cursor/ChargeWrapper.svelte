@@ -53,15 +53,6 @@
 				const dx = mouseX - centerX;
 				const dy = mouseY - centerY;
 
-				// For repulsion: top-left and bottom-right → counter-clockwise (negative rotation)
-				//                top-right and bottom-left → clockwise (positive rotation)
-				// For attraction: opposite of repulsion
-
-				// Quadrant-based rotation: multiply dx and dy
-				// top-left (-, -) → product positive
-				// top-right (+, -) → product negative
-				// bottom-left (-, +) → product negative
-				// bottom-right (+, +) → product positive
 				const quadrantFactor = dx * dy;
 
 				const rotationIntensity = (1 - distance / maxDistance);

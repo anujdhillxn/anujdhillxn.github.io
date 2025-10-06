@@ -3,13 +3,16 @@
     import CustomRenderer from "../CustomRenderer.svelte";
     import { IconLinkedin } from "$lib/icons";
     import Card from "../ui/Card.svelte";
+    import ChargeWrapper from "../cursor/ChargeWrapper.svelte";
 </script>
 
 {#snippet experience(item: Experience)}
     <Card>
         <div class="card-header">
             <div class="company-info">
-                <h3 class="company">{item.employer}</h3>
+                <ChargeWrapper charge={-1} enableRotation={true}>
+                    <h3 class="company">{item.employer}</h3>
+                </ChargeWrapper>
                 {#if item.linkedinUrl}
                     <a href={item.linkedinUrl} target="_blank" rel="noreferrer" class="linkedin-link">
                         {@html IconLinkedin}
@@ -62,7 +65,7 @@
     .company {
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--negative1);
+        color: var(--negative2);
         margin: 0;
     }
 
