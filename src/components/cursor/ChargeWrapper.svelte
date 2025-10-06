@@ -2,9 +2,10 @@
 	import { onMount } from 'svelte';
 	import { cursorCharge } from '$lib/cursorCharge';
 
-	const { children, charge = 0 } = $props<{
+	const { children, charge = 0, enableRotation = false } = $props<{
 		children: any;
 		charge?: number; // -1, 0, 1
+		enableRotation?: boolean;
 	}>();
 
 	let wrapperRef: HTMLElement;
@@ -33,6 +34,7 @@
 
 		const maxDistance = 300;
 		const maxOffset = 20;
+		const maxRotation = 30; // degrees
 
 		if (distance < maxDistance) {
 			const chargeMultiplier = cursorChargeValue * charge;
@@ -43,9 +45,37 @@
 			const offsetX = Math.cos(angle) * force;
 			const offsetY = Math.sin(angle) * force;
 
-			wrapperRef.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+			let transformString = `translate(${offsetX}px, ${offsetY}px)`;
+
+			if (enableRotation) {
+				// Calculate rotation based on quadrant position
+				// Treat element as a horizontal stick - rotation depends on where cursor pushes/pulls from
+				const dx = mouseX - centerX;
+				const dy = mouseY - centerY;
+
+				// For repulsion: top-left and bottom-right → counter-clockwise (negative rotation)
+				//                top-right and bottom-left → clockwise (positive rotation)
+				// For attraction: opposite of repulsion
+
+				// Quadrant-based rotation: multiply dx and dy
+				// top-left (-, -) → product positive
+				// top-right (+, -) → product negative
+				// bottom-left (-, +) → product negative
+				// bottom-right (+, +) → product positive
+				const quadrantFactor = dx * dy;
+
+				const rotationIntensity = (1 - distance / maxDistance);
+
+				// For repulsion (positive chargeMultiplier): positive quadrantFactor → counter-clockwise (negative)
+				// For attraction (negative chargeMultiplier): positive quadrantFactor → clockwise (positive)
+				const rotation = - Math.sign(quadrantFactor) * chargeMultiplier * rotationIntensity * maxRotation;
+
+				transformString += ` rotate(${rotation}deg)`;
+			}
+
+			wrapperRef.style.transform = transformString;
 		} else {
-			wrapperRef.style.transform = 'translate(0, 0)';
+			wrapperRef.style.transform = enableRotation ? 'translate(0, 0) rotate(0deg)' : 'translate(0, 0)';
 		}
 	}
 

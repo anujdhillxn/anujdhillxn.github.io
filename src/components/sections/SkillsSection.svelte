@@ -37,7 +37,7 @@
 <div id="skills" class="SkillsPage">
     <div class="skills">
         {#each skillsWithCharge as { name, charge }}
-            <ChargeWrapper {charge}>
+            <ChargeWrapper {charge} enableRotation={true}>
                 <Card class="skill-card">
                     {name}
                 </Card>
