@@ -8,12 +8,11 @@
     <div class="about-container">
         <div class="about-left">
             <h3>What I do</h3>
-            <p class="about-text">
-                I build things for the web.
-                <br /> Backend, frontend, whatever works.
-                <br /> Into AI, automation, and clean UX.
-                <br /> Scroll down to see my work.
-            </p>
+        <p class="about-text">
+            I am fullstack software engineer.
+            <br /> I enjoy solving problems and making products that works well for both the end users and my team.
+            <br /> If this interests you, I am always open to discussing new opportunities.
+        </p>
         </div>
         <div class="about-right">
             <h3>Know me better</h3>

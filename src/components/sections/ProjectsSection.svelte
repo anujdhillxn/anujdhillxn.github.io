@@ -4,13 +4,11 @@
     import NavigationButton from "../ui/NavigationButton.svelte";
     import { IconGithub, IconLink } from "$lib/icons";
     import Card from "../ui/Card.svelte";
-    import { createIonosphere } from "ions-ts";
     import { cursorCharge } from "$lib/cursorCharge";
 
     let currentPage = $state(0);
     let itemsPerPage = $state(3);
     let totalPages = $derived(Math.ceil(info.projects.length / itemsPerPage));
-    let ionosphere: any;
 
     const nextPage = (e: MouseEvent) => {
         e.stopPropagation();
@@ -39,30 +37,6 @@
         };
     });
 
-    // Create ionosphere once
-    $effect(() => {
-        // Get the computed background color from the body element
-        // This will properly resolve light-dark() based on the current color scheme
-        const backgroundColor = getComputedStyle(document.body).backgroundColor;
-
-        ionosphere = createIonosphere('ionsCanvas', {
-            repaint: backgroundColor,
-            trailMaxLength: 0,
-            cursorCharge: $cursorCharge,
-        });
-        ionosphere.start();
-
-        return () => {
-            ionosphere.destroy();
-        };
-    });
-
-    // Update ionosphere config when cursor charge changes
-    $effect(() => {
-        if (ionosphere) {
-            ionosphere.updateConfig({ cursorCharge: $cursorCharge });
-        }
-    });
 </script>
 
 {#snippet project(item: Project)}
@@ -81,7 +55,7 @@
     </Card>
 {/snippet}
 
-<canvas id='ionsCanvas'></canvas>
+
 <div id="projects" class="ProjectsPage">
     {#key currentPage}
         <div class="projects">
@@ -102,14 +76,7 @@
 </div>
 
 <style>
-        #ionsCanvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
+
     .ProjectsPage {
         display: flex;
         flex-direction: column;

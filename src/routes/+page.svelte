@@ -10,6 +10,8 @@
     import LandingPageSection from "../components/sections/LandingPageSection.svelte";
     import CustomCursor from "../components/cursor/CustomCursor.svelte";
     import CursorTooltip from "../components/cursor/CursorTooltip.svelte";
+	import { createIonosphere } from "ions-ts";
+    import { cursorCharge } from "$lib/cursorCharge";
     // import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
 
     let apiCallStatus = $state(LOADING);
@@ -134,6 +136,32 @@
             content?.removeEventListener('touchend', handleTouchEnd as any);
         };
     })
+
+        let ionosphere: any;
+	    // Create ionosphere once
+    $effect(() => {
+        // Get the computed background color from the body element
+        // This will properly resolve light-dark() based on the current color scheme
+        const backgroundColor = getComputedStyle(document.body).backgroundColor;
+
+        ionosphere = createIonosphere('ionsCanvas', {
+            repaint: backgroundColor,
+            trailMaxLength: 30,
+            cursorCharge: $cursorCharge,
+            cursorImpenetrableRadius: 20,
+
+        });
+        ionosphere.start();
+
+        return () => ionosphere.destroy()
+    });
+
+    $effect(() => {
+        if (ionosphere) {
+            ionosphere.updateConfig({ cursorCharge: $cursorCharge });
+        }
+    });
+
 </script>
 
 <CustomCursor />
@@ -172,8 +200,16 @@
         {/if}
     {/key}
 </div>
-
+<canvas id='ionsCanvas'></canvas>
 <style>
+    #ionsCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
     .navbar-container {
         height: 10vh;
         display: flex;

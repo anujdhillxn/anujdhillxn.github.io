@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { createIonosphere } from "ions-ts";
 	import { visitedSections, markSectionVisited } from "$lib/visitedSections";
 	import LetterText from "../ui/LetterText.svelte";
-
 	const { showNavigationButtons } = $props();
 	const SECTION_INDEX = 0;
 
@@ -37,6 +35,7 @@
 			}, 400);
 		}, 500);
 	});
+
 </script>
 
 <div class="landing">

@@ -217,20 +217,6 @@ const links = [
 ];
 
 export const info = {
-    about: `
-        <p class="about-text">
-            I build things for the web.
-            <br /> I enjoy solving problems and making software that actually works well.
-            <br /> Scroll down to see my work.
-        </p>
-    `,
-    importantThings: [
-        "Clean, maintainable code",
-        "Solving real problems",
-        "Continuous learning",
-        "User experience",
-        "Performance optimization",
-    ],
     cvLink: "https://drive.google.com/file/d/1w2E-dRdiixj7ovxEgP6CI_xsAJPE7TGe/view?usp=sharing",
     email: "anuj.dhillon.14@gmail.com",
     phoneNumber: "+918569919298",
