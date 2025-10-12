@@ -144,9 +144,12 @@
         // This will properly resolve light-dark() based on the current color scheme
         const backgroundColor = getComputedStyle(document.body).backgroundColor;
 
+        const isMobile = window.innerWidth <= 768;
+
         ionosphere = createIonosphere('ionsCanvas', {
             repaint: backgroundColor,
-            trailMaxLength: 30,
+            trailMaxLength: isMobile ? 5 : 30,
+            interactionRadius: isMobile ? 20 : 60,
             cursorCharge: $cursorCharge,
             cursorImpenetrableRadius: 20,
 

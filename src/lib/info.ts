@@ -36,7 +36,7 @@ export type Experience = {
 const projects: Project[] = [
     {
         id: "ions",
-        skills: "Typescript,Canvas API,Animation",
+        skills: "Typescript",
         links: [
             {
                 url: "https://github.com/anujdhillxn/ions-ts",
@@ -169,7 +169,7 @@ const experiences: Experience[] = [
         id: "millennium",
         employer: "Millennium",
         role: "Software Engineer - Enterprise Risk Tech",
-        skills: "Python,AI,ReactJS,Javascript,Typescript,Data Visualization",
+        skills: "Python,Dash,React,FastAPI,AWS,Docker,Kubernetes",
         type: "Full-time",
         startMonth: "June 2025",
         endMonth: "Present",
