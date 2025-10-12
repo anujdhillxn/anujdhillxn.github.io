@@ -149,7 +149,7 @@
         ionosphere = createIonosphere('ionsCanvas', {
             repaint: backgroundColor,
             trailMaxLength: isMobile ? 5 : 30,
-            interactionRadius: isMobile ? 20 : 60,
+            connectionMaxDistanceLimit: isMobile ? 50 : 200,
             cursorCharge: $cursorCharge,
             cursorImpenetrableRadius: 20,
 
