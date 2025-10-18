@@ -1,161 +1,230 @@
 <script lang="ts">
-    import { info, type Project } from "$lib/info";
+    import { info } from "$lib/info";
     import CustomRenderer from "../CustomRenderer.svelte";
-    import NavigationButton from "../ui/NavigationButton.svelte";
-    import { IconGithub, IconLink } from "$lib/icons";
-    import Card from "../ui/Card.svelte";
-    import { cursorCharge } from "$lib/cursorCharge";
 
-    let currentPage = $state(0);
-    let itemsPerPage = $state(3);
-    let totalPages = $derived(Math.ceil(info.projects.length / itemsPerPage));
+    let expandedProjectId = $state<string | null>(null);
 
-    const nextPage = (e: MouseEvent) => {
-        e.stopPropagation();
-        if (currentPage < totalPages - 1) currentPage++;
+    const toggleProject = (projectId: string) => {
+        expandedProjectId = expandedProjectId === projectId ? null : projectId;
     };
 
-    const prevPage = (e: MouseEvent) => {
-        e.stopPropagation();
-        if (currentPage > 0) currentPage--;
+    // Calculate height based on number of accordions
+    // Each collapsed accordion header is approximately 70px
+    const accordionHeaderHeight = 70;
+    const totalHeight = info.projects.length * accordionHeaderHeight;
+
+    // Calculate animation delay based on distance from clicked item
+    const getAnimationDelay = (projectId: string) => {
+        if (expandedProjectId === null) return 0;
+        const expandedIndex = info.projects.findIndex(p => p.id === expandedProjectId);
+        const currentIndex = info.projects.findIndex(p => p.id === projectId);
+        const distance = Math.abs(expandedIndex - currentIndex) - 1;
+        return distance * 0.1; // 0.1s delay per item distance
     };
-
-    const updateItemsPerPage = () => {
-        const newItemsPerPage = 3;
-        if (newItemsPerPage !== itemsPerPage) {
-            itemsPerPage = newItemsPerPage;
-            currentPage = 0;
-        }
-    };
-
-    $effect(() => {
-        updateItemsPerPage();
-        window.addEventListener('resize', updateItemsPerPage);
-
-        return () => {
-            window.removeEventListener('resize', updateItemsPerPage);
-        };
-    });
 
 </script>
 
-{#snippet project(item: Project)}
-    <Card>
-        <div id={item.id}>
-            <div class="header">
-                <h3>{item.title}</h3>
-                {#each item.links as link}
-                    <a href={link.url} target="_blank" rel="noreferrer" class="icon-link">
-                        <CustomRenderer htmlString={link.url.includes('github.com') ? IconGithub : IconLink} />
-                    </a>
-                {/each}
-            </div>
-            <p>{item.description}</p>
-        </div>
-    </Card>
-{/snippet}
-
-
 <div id="projects" class="ProjectsPage">
-    {#key currentPage}
-        <div class="projects">
-            {#each info.projects.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) as item}
-                {@render project(item)}
-            {/each}
-        </div>
-    {/key}
-    <div class="nav-controls">
-        <NavigationButton onclick={prevPage} disabled={currentPage === 0}>
-            ◀
-        </NavigationButton>
-        <span class="page-indicator">{currentPage + 1} / {totalPages}</span>
-        <NavigationButton onclick={nextPage} disabled={currentPage === totalPages - 1}>
-            ▶
-        </NavigationButton>
+    <div class="accordion" style="height: {totalHeight}px;">
+        {#each info.projects as project}
+            <div
+                class="accordion-item"
+                class:expanded={expandedProjectId === project.id}
+                class:hidden={expandedProjectId !== null && expandedProjectId !== project.id}
+                style="transition-delay: {getAnimationDelay(project.id)}s;"
+            >
+                <button
+                    class="accordion-header"
+                    onclick={(e) => {
+                        e.stopPropagation();
+                        toggleProject(project.id)
+                    }}
+                    aria-expanded={expandedProjectId === project.id}
+                >
+                    <h3>{project.title}</h3>
+                    <span
+                        class="arrow"
+                        class:rotated={expandedProjectId === project.id}
+                        class:hidden-arrow={expandedProjectId !== null && expandedProjectId !== project.id}
+                    >▼</span>
+                </button>
+
+                {#if expandedProjectId === project.id}
+                    {@const currentIndex = info.projects.findIndex(p => p.id === project.id)}
+                    <div class="accordion-content" style="animation-delay: {currentIndex * 0.1}s;">
+                        <p class="description">{project.description}</p>
+                        <div class="links">
+                            {#each project.links as link}
+                                <a href={link.url} target="_blank" rel="noreferrer" class="icon-link">
+                                    <CustomRenderer htmlString={link.icon} />
+                                </a>
+                            {/each}
+                        </div>
+                    </div>
+                {/if}
+            </div>
+        {/each}
     </div>
 </div>
 
 <style>
-
     .ProjectsPage {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
     }
 
-    .projects {
+    .accordion {
         display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        animation: slideIn 0.5s ease-in-out;
-        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
     }
 
-    .nav-controls {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
+    .accordion-item {
+        background: var(--bg2);
+        border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        max-height: 70px;
+        opacity: 1;
+        overflow: hidden;
+        transform: translateX(0);
+        transition: max-height 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .page-indicator {
-        font-size: 0.875rem;
-        color: var(--text3);
-        min-width: 3rem;
-        text-align: center;
+    .accordion-item.hidden {
+        max-height: 0;
+        opacity: 0;
+        transform: translateX(-10%);
+        border-bottom: none;
     }
 
-    .projects :global(.card) {
-        width: 350px;
+    .accordion-item:hover:not(.expanded):not(.hidden) {
+        background: var(--bg3);
+        transform: translateX(0) scale(1.02);
     }
 
-    @media screen and (max-width: 900px) {
-        .projects :global(.card) {
-            width: 100%;
-        }
+    .accordion-item:hover:not(.expanded):not(.hidden) .accordion-header h3 {
+        color: var(--accent);
+        transform: translateX(8px);
     }
 
-    @keyframes slideIn {
-        from {
-            opacity: 0;
-            transform: translateX(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+    .accordion-item.expanded {
+        background: var(--bg3);
+        flex: 1;
+        border-bottom: none;
+        max-height: none;
     }
 
-    .projects .header {
+    .accordion-header {
+        width: 100%;
         display: flex;
         align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 0.5rem;
+        justify-content: space-between;
+        padding: 1.25rem 1.75rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        font-family: inherit;
     }
 
-    .projects .header h3 {
+    .accordion-header h3 {
         margin: 0;
         font-weight: 600;
-        color: var(--text1);
+        color: var(--text2);
+        font-size: 1.1rem;
+        transition: color 0.3s ease, transform 0.3s ease;
     }
 
-    .projects .header .icon-link {
-        display: inline-flex;
-        opacity: 0.8;
-        transition: opacity 0.2s;
+    .arrow {
+        color: var(--accent);
+        font-size: 0.75rem;
+        flex-shrink: 0;
+        margin-left: 1rem;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0.7;
+        font-weight: 300;
     }
 
-    .projects .header .icon-link:hover {
+    .accordion-item:hover .arrow {
         opacity: 1;
     }
 
-    .projects .header .icon-link :global(svg.icon) {
+    .arrow.rotated {
+        transform: rotate(180deg);
+    }
+
+    .arrow.hidden-arrow {
+        transform: rotate(90deg);
+    }
+
+    .accordion-content {
+        padding: 0 1.75rem 1.75rem 1.75rem;
+        animation: fadeSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        animation-fill-mode: both;
+    }
+
+    @keyframes fadeSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .description {
+        margin: 0 0 1.25rem 0;
+        color: var(--text2);
+        line-height: 1.7;
+        font-size: 1rem;
+        padding: 1rem;
+        background: var(--bg2);
+        border-radius: 0.5rem;
+        border-left: 3px solid var(--accent);
+    }
+
+    .links {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    .icon-link {
+        display: inline-flex;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background: var(--bg2);
+        opacity: 0.9;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .icon-link:hover {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        background: var(--accent);
+    }
+
+    .icon-link :global(svg.icon) {
         width: 1.5rem !important;
         height: 1.5rem !important;
     }
 
-    .projects p {
-        margin: 0;
-        color: var(--text2);
+    @media screen and (max-width: 768px) {
+        .accordion-header {
+            padding: 1rem 1.25rem;
+        }
+
+        .accordion-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .accordion-content {
+            padding: 0 1.25rem 1.25rem 1.25rem;
+        }
     }
 </style>
