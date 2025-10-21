@@ -81,8 +81,8 @@
     }
 
     .accordion-item {
-        background: var(--bg2);
-        border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        background: var(--background1);
+        border-bottom:  1px solid color-mix(in srgb, var(--text1) 20%, transparent);
         max-height: 70px;
         opacity: 1;
         overflow: hidden;
@@ -98,19 +98,20 @@
     }
 
     .accordion-item:hover:not(.expanded):not(.hidden) {
-        background: var(--bg3);
-        transform: translateX(0) scale(1.02);
+        background: var(--background2);
     }
 
     .accordion-item:hover:not(.expanded):not(.hidden) .accordion-header h3 {
-        color: var(--accent);
+        color: var(--text1);
         transform: translateX(8px);
     }
 
     .accordion-item.expanded {
-        background: var(--bg3);
+        background: var(--background2);
         flex: 1;
-        border-bottom: none;
+        background-color: var(--background2);
+        border: 1px solid color-mix(in srgb, var(--text1) 20%, transparent);
+        border-radius: 8px;
         max-height: none;
     }
 
@@ -136,7 +137,7 @@
     }
 
     .arrow {
-        color: var(--accent);
+        color: var(--text3);
         font-size: 0.75rem;
         flex-shrink: 0;
         margin-left: 1rem;
@@ -176,13 +177,11 @@
 
     .description {
         margin: 0 0 1.25rem 0;
-        color: var(--text2);
+        color: var(--text3);
         line-height: 1.7;
         font-size: 1rem;
         padding: 1rem;
-        background: var(--bg2);
         border-radius: 0.5rem;
-        border-left: 3px solid var(--accent);
     }
 
     .links {
@@ -196,17 +195,8 @@
         display: inline-flex;
         padding: 0.5rem;
         border-radius: 0.5rem;
-        background: var(--bg2);
         opacity: 0.9;
         transition: all 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .icon-link:hover {
-        opacity: 1;
-        transform: translateY(-2px) scale(1.1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        background: var(--accent);
     }
 
     .icon-link :global(svg.icon) {

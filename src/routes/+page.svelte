@@ -19,6 +19,8 @@
     let currentSection = $state(0);
     let isNavigating = $state(false);
     let showNavigation = $state(false);
+    let scrollAccumulator = 0;
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
 
     function showNavigationButtons() {
         showNavigation = true;
@@ -55,10 +57,33 @@
         e.preventDefault();
         if (isNavigating) return;
 
-        if (e.deltaY > 0) {
-            goDown();
-        } else if (e.deltaY < 0) {
-            goUp();
+        // Accumulate scroll deltas
+        scrollAccumulator += e.deltaY;
+
+        // Clear existing timeout
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+
+        // Set a timeout to reset the accumulator if scrolling stops
+        scrollTimeout = setTimeout(() => {
+            scrollAccumulator = 0;
+        }, 150);
+
+        // Threshold to trigger navigation (touchpad generates small values, mouse wheel generates large values)
+        const threshold = 100;
+
+        if (Math.abs(scrollAccumulator) >= threshold) {
+            if (scrollAccumulator > 0) {
+                goDown();
+            } else {
+                goUp();
+            }
+            scrollAccumulator = 0;
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = null;
+            }
         }
     };
 
