@@ -38,7 +38,7 @@
 		class="cursor-tooltip"
 		style="left: {cursorX}px; top: {cursorY}px;"
 	>
-		<p>{isTouchDevice ? 'Double-tap to switch charge' : 'Right-click to switch charge'}</p>
+		<p>{isTouchDevice ? 'Tap and hold to switch charge' : 'Right-click to switch charge'}</p>
 		<p class="charge-info">
 			Move close to colored elements, opposites attract
 		</p>
