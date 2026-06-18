@@ -1,14 +1,15 @@
 <script lang="ts">
-    const { href, onclick, children } = $props<{
+    const { href, onclick, target, children } = $props<{
         href?: string;
         onclick?: () => void;
+        target?: string;
         children: any;
     }>();
 </script>
 
 {#if href}
     <button class="btn">
-        <a {href}>{@render children()}</a>
+        <a {href} {target} rel={target === "_blank" ? "noopener noreferrer" : undefined}>{@render children()}</a>
     </button>
 {:else}
     <button class="btn" {onclick}>

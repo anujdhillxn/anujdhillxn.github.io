@@ -5,6 +5,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite dev",
+        "resume": "cd resume && tectonic PlushCV.tex && mv PlushCV.pdf ../static/resume.pdf",
+        "prebuild": "npm run resume",
         "build": "vite build",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",

@@ -1,5 +1,11 @@
 node_modules
 
+# Generated resume PDF (source of truth is resume/PlushCV.tex)
+/static/resume.pdf
+/resume/*.pdf
+/resume/*.aux
+/resume/*.log
+
 # Output
 .output
 .vercel

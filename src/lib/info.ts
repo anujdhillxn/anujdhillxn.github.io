@@ -217,7 +217,7 @@ const links = [
 ];
 
 export const info = {
-    cvLink: "https://drive.google.com/file/d/1w2E-dRdiixj7ovxEgP6CI_xsAJPE7TGe/view?usp=sharing",
+    cvLink: "/resume.pdf",
     email: "anuj.dhillon.14@gmail.com",
     phoneNumber: "+918569919298",
     links,

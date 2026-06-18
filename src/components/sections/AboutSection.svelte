@@ -41,7 +41,7 @@
     </div>
     <div class="cv-button-container">
         <ChargeWrapper charge={-1}>
-            <Button href={info.cvLink}>Download CV</Button>
+            <Button href={info.cvLink} target="_blank">Download CV</Button>
         </ChargeWrapper>
     </div>
 </div>

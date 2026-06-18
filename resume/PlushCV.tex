@@ -1,0 +1,207 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PlushCV - One Page Two Column Resume
+% LaTeX Template
+% Version 1.0 (11/28/2021)
+%
+% Author:
+% Shubham Mazumder (http://mazumder.me)
+%
+% Hacked together from:
+% https://github.com/deedydas/Deedy-Resume
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% TODO:
+% 1. Figure out a smoother way for the document to flow onto the next page.
+% 3. Add more icon options 
+% 4. Fix hacky left alignment on contact line
+% 5. Remove Hacky fix for awkward extra vertical space
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CHANGELOG:
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Known Issues:
+% 1. Overflows onto second page if any column's contents are more than the vertical limit.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%Icons:
+%%Main: https://icons8.com/icons/carbon-copy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[]{plushcv}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     TITLE NAME
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\namesection{Anuj}{Dhillon}{Full Stack Software Engineer}{\contactline{\href{https://anujdhillxn.github.io}{Website}}{\href{https://www.github.com/anujdhillxn}{Github}}{\href{https://www.linkedin.com/in/anujdhillxn}{LinkedIn}}{\href{mailto:anuj.dhillon.14@gmail.com}{anuj.dhillon.14@gmail.com}}{\href{tel:+918569919298}{+918569919298}}}
+
+% \namesection{Firstname}{Lastname}{Full Stack Software Engineer}{\contactline{\href{https://www.mazumder.me}{mazumder.me}}{\href{https://www.github.com/sansquoi}{sansquoi}}{\href{https://www.linkedin.com/mazumders}{mazumders}}{\href{mailto:shubham.mazumder@gmail.com}{first.last@email.com}}{\href{tel:+1999999999}{9999999999}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN ONE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{minipage}[t]{0.61\textwidth}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experience}
+\runsubsection{Australia and New Zealand Banking Group Limited}
+\descript{\\Full Stack Developer}
+\location{June, 2022 – Current | Bengaluru, }
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\sectionsep
+\item Created a \textbf{Static Data Viewer (ReactJS, Spring)} that converts XML into an editable, human-readable grid with diffs across versions.
+\item Created a \textbf{Review System (ReactJS, Spring, C++, MS SQL Server)} that blocks DB changes until the required approvals are in place.
+\item Created \textbf{live} IR/FX fixing views for traders, optimized for high-volume data via string caches and chunk-loading.
+\item Contributed to the FXO trade booking migration from MX2.11 to MX3.
+\item Collaborated with FX, Rates and XVA squads across \textbf{India, Australia and Singapore} to add features, fix bugs and improve performance.
+\end{tightemize}
+\sectionsep
+
+\runsubsection{Math Materate}
+\descript{\\Full Stack Developer }
+\location{May 2021 – August 2021 | Remote}
+\begin{tightemize}
+\sectionsep
+\item Developed a \textbf{Live classes Portal} with integrated \textbf{Jitsi} video conferencing for hosting classes and resolving student doubts.
+\item Built the entire UI in \textbf{ReactJS}, from CSS to API integration.
+\item Built the models and REST API in \textbf{Django Rest Framework}.
+\end{tightemize}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Projects
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Projects}
+
+\runsubsection{\href{https://github.com/anujdhillxn/lucive}{Lucive - Digital Detox}}
+\vspace{\dimexpr\topsep-2pt\relax} % match Experience timeline-to-bullet gap
+\begin{tightemize}
+\item Android app built in \textbf{Java and React Native} that stores opening/closing events for quick calculation of daily/hourly/session screen times
+\item Users create screen time rules for other apps and form \textbf{duos}. Change to any rule must be approved by the partner to enforce accountability
+\item Backend built using \textbf{Django} that uses \textbf{Google OAuth 2.0} for authentication
+\end{tightemize}
+\sectionsep
+\runsubsection{\href{https://github.com/anujdhillxn/agnocpeed}{Agnocpeed - Competitive Programming Support}}
+\vspace{\dimexpr\topsep-2pt\relax} % match Experience timeline-to-bullet gap
+\begin{tightemize}
+\item OS - agnostic \textbf{desktop app} created using \textbf{Electron + React}
+\item Provides a \textbf{single view} for checking problem statement, compiling the code, running sample test cases, live standings and voice feedback of submissions 
+\item Allows user to configure it with their favourite editors, hotkeys, templates and programming languages to provide a \textbf{personalized experience}
+\end{tightemize}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     COLUMN TWO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{minipage} 
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     EDUCATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Education} 
+
+\subsection{Indian Institute of \\Technology, Delhi}
+\descript{B.Tech, Mechanical Engineering}
+\location{ Cum. GPA: 8.49/10 | Jul 2018 - May 2022}
+\vspace{\topsep} % Hacky fix for awkward extra vertical space
+\begin{tightemize}
+\sectionsep
+\item Statistics
+\item Numerical Methods and Computation
+\item Data Structures and Algorithms
+\item Analysis and Design of Algorithms
+\end{tightemize}
+\sectionsep
+
+\subsection{OP Jindal Modern School, Hisar}
+\descript{12th, CBSE}
+\location{ 91.6\% | Apr 2018}
+\sectionsep
+
+\subsection{St. Kabir's School, Hisar}
+\descript{10th, ICSE}
+\location{ 94.8\% | Apr 2016}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Skills}
+\begin{tabular}{lll}
+\textbullet{}Javascript & \textbullet{}C++ & \textbullet{}Python\\
+\textbullet{}Typescript & \textbullet{}Java & \textbullet{}SQL\\
+\textbullet{}NodeJS & \textbullet{}ReactJS & \textbullet{}Express\\
+\textbullet{}DSA & \textbullet{}Git & \textbullet{}Gradle\\
+\textbullet{}Spring & \textbullet{}Django & \textbullet{}Flask\\
+\textbullet{}MongoDB & \textbullet{}Shell & \textbullet{}Electron\\
+\end{tabular}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     AWARDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Accolades}
+\vspace{\topsep}
+\begin{tightemize}
+\item \textbf{AIR 935} in JEE Advanced 2018
+\item \href{https://codeforces.com/profile/anujdhillxn}{\textbf{Codeforces}} max rating 2010 (CM)
+\item \href{https://www.codechef.com/users/anujdhillxn}{\textbf{Codechef}} max rating 2245 \textbf{(6 stars)}
+\item \href{https://atcoder.jp/users/anujdhillon}{\textbf{Atcoder}} max rating 1751 (2 Kyu)
+\item \href{https://leetcode.com/anujdhillxn/}{\textbf{Leetcode}} max rating \textbf{2581}
+\item \textbf{Rank 1} in Zonal Science Quiz 2017
+\end{tightemize}
+\sectionsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     COURSEWORK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Coursework}
+
+% \subsection{Graduate}
+% Graduate Algorithms \textbullet{}\\ 
+% Advanced Computer Architecture \textbullet{}\\ 
+% Operating Systems \textbullet{}\\ 
+% Artificial Intelligence \textbullet{}\\
+% Visualization For Scientific Data \\
+% \sectionsep
+
+% \subsection{Undergraduate}
+
+% Database Management Systems \textbullet{}\\
+% Object Oriented Analysis and Design \textbullet{}\\
+% Artificial Intelligence and Expert Systems \textbullet{}\\
+% Scripting Languages and Web Tech \textbullet{}\\
+% Software Engineering \\
+
+\end{minipage} 
+\end{document}  \documentclass[]{article}
+
