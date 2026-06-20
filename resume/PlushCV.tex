@@ -55,7 +55,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{minipage}[t]{0.61\textwidth}
+\begin{minipage}[t]{0.57\textwidth}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -63,17 +63,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Experience}
-\runsubsection{Australia and New Zealand Banking Group Limited}
-\descript{\\Full Stack Developer}
-\location{June, 2022 – Current | Bengaluru, }
+\runsubsection{Millennium}
+\descript{\\Software Engineer, Enterprise Risk Tech}
+\location{June 2025 – Current | Bengaluru}
 \vspace{\topsep} % Hacky fix for awkward extra vertical space
 \begin{tightemize}
 \sectionsep
-\item Created a \textbf{Static Data Viewer (ReactJS, Spring)} that converts XML into an editable, human-readable grid with diffs across versions.
-\item Created a \textbf{Review System (ReactJS, Spring, C++, MS SQL Server)} that blocks DB changes until the required approvals are in place.
-\item Created \textbf{live} IR/FX fixing views for traders, optimized for high-volume data via string caches and chunk-loading.
-\item Contributed to the FXO trade booking migration from MX2.11 to MX3.
-\item Collaborated with FX, Rates and XVA squads across \textbf{India, Australia and Singapore} to add features, fix bugs and improve performance.
+\item Built the UI shell of the \textbf{Enterprise Risk Dashboard}, a firm-wide, cross-asset \textbf{Dash} platform, with a \textbf{component library} researchers use to ship consistent, production-grade pages.
+\item Migrated the data-access layer to a \textbf{Rust} API with enforced permissions, \textbf{Parquet}-based caching and richer monitoring.
+\item Built a \textbf{Playwright} regression suite with \textbf{AI}-generated reports catching pre-release changes down to cache inconsistencies.
+\item Integrated the firm's \textbf{AI agent} into the dashboard so it can operate the UI and query the \textbf{Rust} API directly for deeper analysis.
+\end{tightemize}
+\sectionsep
+
+\runsubsection{Australia and New Zealand Banking Group Limited}
+\descript{\\Full Stack Developer, Front Office Tech}
+\location{June 2022 – June 2025 | Bengaluru}
+\begin{tightemize}
+\sectionsep
+\item Created a \textbf{Static Data Viewer (ReactJS, Spring)} that turns XML into an editable, human-readable grid with version diffs.
+\item Created a \textbf{Review System (ReactJS, Spring, C++, MS SQL Server)} that blocks reference-data changes pending approvals.
+\item Created \textbf{live} IR/FX fixing views for traders, optimized for high-volume data via caching, chunk-loading and virtualization.
+\item Contributed to the \textbf{FXO trade booking migration} from Murex MX.2.11 to MX.3, reworking the affected views and service APIs.
 \end{tightemize}
 \sectionsep
 
@@ -83,8 +94,7 @@
 \begin{tightemize}
 \sectionsep
 \item Developed a \textbf{Live classes Portal} with integrated \textbf{Jitsi} video conferencing for hosting classes and resolving student doubts.
-\item Built the entire UI in \textbf{ReactJS}, from CSS to API integration.
-\item Built the models and REST API in \textbf{Django Rest Framework}.
+\item Built the entire frontend in \textbf{ReactJS}, handling everything from layout and CSS styling to state and REST API integration.
 \end{tightemize}
 \sectionsep
 
@@ -93,11 +103,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Skills}
-{\setlength{\tabcolsep}{4pt}
+{\setlength{\tabcolsep}{2pt}
 \begin{tabular}{llllll}
-\textbullet{}Javascript & \textbullet{}Typescript & \textbullet{}Python & \textbullet{}Java & \textbullet{}C++ & \textbullet{}SQL\\
-\textbullet{}NodeJS & \textbullet{}ReactJS & \textbullet{}Express & \textbullet{}Django & \textbullet{}Flask & \textbullet{}Spring\\
-\textbullet{}MongoDB & \textbullet{}Git & \textbullet{}Gradle & \textbullet{}Shell & \textbullet{}Electron & \textbullet{}DSA\\
+\textbullet{}\hspace{5pt}Javascript & \textbullet{}\hspace{5pt}Typescript & \textbullet{}\hspace{5pt}Python & \textbullet{}\hspace{5pt}Java & \textbullet{}\hspace{5pt}C++ & \textbullet{}\hspace{5pt}SQL\\[1pt]
+\textbullet{}\hspace{5pt}NodeJS & \textbullet{}\hspace{5pt}ReactJS & \textbullet{}\hspace{5pt}Express & \textbullet{}\hspace{5pt}Django & \textbullet{}\hspace{5pt}Flask & \textbullet{}\hspace{5pt}Spring\\[1pt]
+\textbullet{}\hspace{5pt}MongoDB & \textbullet{}\hspace{5pt}Git & \textbullet{}\hspace{5pt}Gradle & \textbullet{}\hspace{5pt}Shell & \textbullet{}\hspace{5pt}Electron & \textbullet{}\hspace{5pt}DSA\\
 \end{tabular}}
 \sectionsep
 
@@ -106,11 +116,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Accolades}
-\begin{tabular}{ll}
-\textbullet{}\textbf{AIR 935} in JEE Advanced 2018 & \textbullet{}\href{https://codeforces.com/profile/anujdhillxn}{\textbf{Codeforces}} max rating 2010 (CM)\\
-\textbullet{}\href{https://www.codechef.com/users/anujdhillxn}{\textbf{Codechef}} max rating 2245 \textbf{(6 stars)} & \textbullet{}\href{https://atcoder.jp/users/anujdhillon}{\textbf{Atcoder}} max rating 1751 (2 Kyu)\\
-\textbullet{}\href{https://leetcode.com/anujdhillxn/}{\textbf{Leetcode}} max rating \textbf{2581} & \textbullet{}\textbf{Rank 1} in Zonal Science Quiz 2017\\
-\end{tabular}
+{\setlength{\tabcolsep}{4pt}
+\newlength{\accbull}\settowidth{\accbull}{\textbullet{}\hspace{5pt}}
+\newcommand{\acc}[1]{\hangindent=\accbull\hangafter=1\textbullet{}\hspace{5pt}#1}
+\begin{tabular}{@{}p{0.48\linewidth}p{0.48\linewidth}@{}}
+\acc{\textbf{AIR 935} in JEE Advanced 2018} & \acc{\href{https://leetcode.com/anujdhillxn/}{\textbf{Leetcode}} rating \textbf{2581}}\\[1pt]
+\acc{\href{https://www.codechef.com/users/anujdhillxn}{\textbf{Codechef}} rating 2245 \textbf{(6 stars)}} & \acc{\href{https://atcoder.jp/users/anujdhillon}{\textbf{Atcoder}} rating 1751 (2 Kyu)}\\[1pt]
+\acc{\href{https://codeforces.com/profile/anujdhillxn}{\textbf{Codeforces}} rating 2010 (\mbox{Candidate} Master)} & \acc{\textbf{Rank 1} in Zonal Science Quiz, Haryana 2017}\\
+\end{tabular}}
 \sectionsep
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,7 +134,7 @@
 
 \end{minipage} 
 \hfill
-\begin{minipage}[t]{0.35\textwidth}
+\begin{minipage}[t]{0.39\textwidth}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     EDUCATION
@@ -143,13 +156,11 @@
 \sectionsep
 
 \subsection{OP Jindal Modern School, Hisar}
-\descript{12th, CBSE}
-\location{ 91.6\% | Apr 2018}
+\descript{12th, CBSE | 91.6\% | Apr 2018}
 \sectionsep
 
 \subsection{St. Kabir's School, Hisar}
-\descript{10th, ICSE}
-\location{ 94.8\% | Apr 2016}
+\descript{10th, ICSE | 94.8\% | Apr 2016}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Projects
@@ -161,16 +172,16 @@
 \vspace{\dimexpr\topsep-2pt\relax} % match Experience timeline-to-bullet gap
 \begin{tightemize}
 \item Android app (\textbf{Java}, \textbf{React Native}) that logs app open/close events to compute daily, hourly and session screen time.
-\item Users set screen-time rules and pair into \textbf{duos}; rule changes need partner approval for accountability.
-\item \textbf{Django} backend with \textbf{Google OAuth 2.0} authentication.
+\item Users set screen-time rules and pair into \textbf{duos}; changes need partner approval.
+\item \textbf{Django} backend with \textbf{Google OAuth 2.0}.
 \end{tightemize}
 \sectionsep
-\runsubsection{\href{https://github.com/anujdhillxn/agnocpeed}{Agnocpeed - Competitive Programming Support}}
+\runsubsection{\href{https://github.com/anujdhillxn/agnocpeed}{Agnocpeed - Competitive Coding}}
 \vspace{\dimexpr\topsep-2pt\relax} % match Experience timeline-to-bullet gap
 \begin{tightemize}
-\item OS-agnostic \textbf{desktop app} built with \textbf{Electron + React}.
-\item \textbf{Single view} to read problems, compile, run sample tests, track live standings and hear voice feedback on submissions.
-\item Configurable editors, hotkeys, templates and languages for a \textbf{personalized experience}.
+\item OS-agnostic \textbf{Electron} desktop app.
+\item \textbf{Single view} to read problems, run sample tests, track live standings and hear voice feedback on submissions.
+\item Configurable editors, hotkeys, templates.
 \end{tightemize}
 \sectionsep
 
